@@ -87,13 +87,6 @@
   <div class="title" style="margin-top: 60px;">EHRStruct Leaderboard</div>
   <div class="subtitle"><em>Which model performs best on structured EHR tasks?</em></div>
 
-  <!-- 切换按钮精简美观版 -->
-  <div style="margin: 20px auto; text-align: center;">
-    <button id="toggleDataset" onclick="toggleDataset()" class="toggle-btn">
-      Switch to eICU
-    </button>
-  </div>
-
   <!-- 简要任务描述 -->
   <div class="abstract-box">
     <div class="abstract-title">Task Overview</div>
@@ -112,20 +105,23 @@
   </div>
 
   <!-- 任務切換按鈕模塊化樣式（仿 VBench） -->
-  <div style="margin-top: 30px; text-align: center;">
+  <div class="tab-bar-wrapper">
     <div class="tab-bar">
-      <button class="tab-btn" onclick="showTask('D-U1')">D-U1</button>
-      <button class="tab-btn" onclick="showTask('D-U2')">D-U2</button>
-      <button class="tab-btn" onclick="showTask('D-R1')">D-R1</button>
-      <button class="tab-btn" onclick="showTask('D-R2')">D-R2</button>
-      <button class="tab-btn" onclick="showTask('D-R3')">D-R3</button>
-      <button class="tab-btn" onclick="showTask('D-R4')">D-R4</button>
-      <button class="tab-btn" onclick="showTask('D-R5')">D-R5</button>
-      <button class="tab-btn" onclick="showTask('K-U1')">K-U1</button>
-      <button class="tab-btn" onclick="showTask('K-R1')">K-R1</button>
-      <button class="tab-btn" onclick="showTask('K-R2')">K-R2</button>
-      <button class="tab-btn" onclick="showTask('K-R3')">K-R3</button>
+      <button class="tab-btn" onclick="showTask('D-U1', this)">D-U1</button>
+      <button class="tab-btn" onclick="showTask('D-U2', this)">D-U2</button>
+      <button class="tab-btn" onclick="showTask('D-R1', this)">D-R1</button>
+      <button class="tab-btn" onclick="showTask('D-R2', this)">D-R2</button>
+      <button class="tab-btn" onclick="showTask('D-R3', this)">D-R3</button>
+      <button class="tab-btn" onclick="showTask('D-R4', this)">D-R4</button>
+      <button class="tab-btn" onclick="showTask('D-R5', this)">D-R5</button>
+      <button class="tab-btn" onclick="showTask('K-U1', this)">K-U1</button>
+      <button class="tab-btn" onclick="showTask('K-R1', this)">K-R1</button>
+      <button class="tab-btn" onclick="showTask('K-R2', this)">K-R2</button>
+      <button class="tab-btn" onclick="showTask('K-R3', this)">K-R3</button>
     </div>
+    <button id="toggleDataset" onclick="toggleDataset()" class="toggle-chip">
+      eICU ↔
+    </button>
   </div>
 
   <!-- 排行榜容器 -->
@@ -141,54 +137,46 @@
   function toggleDataset() {
     currentDataset = currentDataset === 'synthea' ? 'eicu' : 'synthea';
     document.getElementById('toggleDataset').innerText =
-      currentDataset === 'synthea' ? 'Switch to eICU' : 'Switch to Synthea';
+      currentDataset === 'synthea' ? 'eICU ↔' : 'Synthea ↔';
     if (currentTask) {
       showTask(currentTask);
     }
   }
 
-  function showTask(task) {
+  function showTask(task, el) {
     currentTask = task;
     document.getElementById('leaderboard').innerHTML =
       `<p><strong>${task}</strong> results on <strong>${currentDataset}</strong> dataset will be shown here.</p>` +
       `<p style='color: #aaa'>(Table placeholder for ${task} leaderboard)</p>`;
+
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active-tab'));
+    if (el) el.classList.add('active-tab');
   }
 </script>
 
 <style>
-  .toggle-btn {
-    padding: 8px 16px;
-    background-color: #eee;
-    color: #444;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
+  .tab-bar-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    background: #f9f9f9;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
-  .toggle-btn:hover {
-    background-color: #dcd7ff;
-    border-color: #7e3af2;
-    color: #000;
-  }
-
   .tab-bar {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 8px;
-    background-color: #f6f6f6;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
-
   .tab-btn {
     padding: 6px 12px;
     font-size: 14px;
     background-color: white;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s;
   }
@@ -196,7 +184,27 @@
     background-color: #f0eaff;
     border-color: #7e3af2;
   }
+  .active-tab {
+    background-color: #7e3af2;
+    color: white;
+    border-color: #7e3af2;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  }
+  .toggle-chip {
+    background-color: #fef6ff;
+    border: 1px solid #d0b4ff;
+    color: #7e3af2;
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .toggle-chip:hover {
+    background-color: #ede9fe;
+  }
 </style>
+
 
 
 </body>
