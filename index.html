@@ -1,72 +1,221 @@
-<style>
-  body {
-    font-family: "Segoe UI", Roboto, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2; /* ✅ 整体淡灰背景 */
-    color: #333;
-    line-height: 1.6;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EHRStruct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+      color: #333;
+      line-height: 1.6;
+    }
 
-  .container {
-    max-width: 960px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff; /* ✅ 所有容器白底 */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
-  }
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
 
-  .title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #000; /* ✅ 主标题黑色 */
-  }
+    .title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #000;
+    }
 
-  .title .highlight {
-    color: #7e3af2; /* ✅ EHRStruct 紫色 */
-  }
+    .title .highlight {
+      color: #7e3af2;
+    }
 
-  .subtitle {
-    font-size: 20px;
-    margin-top: 10px;
-    color: #555;
-  }
+    .subtitle {
+      font-size: 20px;
+      margin-top: 10px;
+      color: #555;
+    }
 
-  .image-container {
-    background-color: #fff; /* ✅ 图像区域白底 */
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-  }
+    .image-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
 
-  .overview-paragraph {
-    background-color: #fff; /* ✅ overview 区域白底 */
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-  }
+    .overview-paragraph {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
 
-  .abstract-box {
-    margin-top: 40px;
-    padding: 30px;
-    background-color: #fff; /* ✅ 白底，无边框颜色 */
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-  }
+    .abstract-box {
+      margin-top: 40px;
+      padding: 30px;
+      background-color: #fff;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+    }
 
-  .abstract-title {
-    font-weight: 600;
-    font-size: 24px; /* ✅ Abstract 标题小于主标题 */
-    color: #222;
-    margin-bottom: 16px;
-  }
+    .abstract-title {
+      font-weight: 600;
+      font-size: 24px;
+      color: #222;
+      margin-bottom: 16px;
+    }
 
-  .abstract-text {
-    font-size: 17px; /* ✅ 正文字体小于 Abstract */
-    text-align: justify;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-</style>
+    .abstract-text {
+      font-size: 17px;
+      text-align: justify;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .tab-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      background-color: #f0f0f0;
+      padding: 10px 15px;
+      border-radius: 10px 10px 0 0;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      margin-top: 40px;
+    }
+
+    .tab-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tab-btn {
+      padding: 6px 12px;
+      font-size: 14px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      background-color: #f0eaff;
+      border-color: #7e3af2;
+    }
+
+    .toggle-btn {
+      padding: 8px 14px;
+      background-color: #fdfdfd;
+      color: #444;
+      border: 1px solid #bbb;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .toggle-btn:hover {
+      background-color: #ded7ff;
+      border-color: #7e3af2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title"><span class="highlight">EHRStruct</span>: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks</div>
+
+    <div class="image-container">
+      <img src="Overview%20of%20EHRStruct.png" alt="Overview of EHRStruct" style="width:100%; max-width:800px; margin: 30px auto; display:block;">
+    </div>
+
+    <div class="overview-paragraph">
+      <p style="font-size: 16px; text-align: justify;">
+        <strong>Overview of EHRStruct.</strong> <strong>EHRStruct</strong> comprises four key components that together define a comprehensive benchmark for evaluating LLMs on structured EHR data. <strong>(1) Task Synthesis</strong> identifies clinically relevant reasoning needs through a collaboration between CS researchers and medical experts, combining prior research distillation with real-world clinical priorities. <strong>(2) Task Taxonomy Construction</strong> organizes tasks along three dimensions—clinical scenario (data- vs. knowledge-driven), cognitive level (understanding vs. reasoning), and functional type—forming a principled evaluation space. <strong>(3) Task-Specific Sample Extraction</strong> selects representative structured tables from both synthetic and real-world EHR datasets (Synthea and eICU), and generates 2,200 high-quality question–answer samples through a validated annotation pipeline. <strong>(4) Model Evaluation Pipeline</strong> transforms structured tables into multiple input formats, applies prompting, enhancement, or fine-tuning techniques to 20 representative LLMs, and evaluates outputs using automated scoring and leaderboard comparison, including our proposed SEMaster method.
+      </p>
+    </div>
+
+    <div class="abstract-box">
+      <div class="abstract-title">Abstract</div>
+      <div class="abstract-text">
+        Structured Electronic Health Record (EHR) data stores patient information in relational tables and plays a central role in clinical decision-making. 
+        Recent advances have explored the use of large language models (LLMs) to process such data, showing promise across various clinical tasks.
+        However, the absence of standardized evaluation frameworks and clearly defined tasks makes it difficult to systematically assess and compare LLM performance on structured EHR data.
+        To address these evaluation challenges, we introduce EHRStruct, a benchmark specifically designed to evaluate LLMs on structured EHR tasks.
+        EHRStruct defines 11 representative tasks spanning diverse clinical needs and includes 2,200 task-specific evaluation samples derived from two widely used EHR datasets.
+        We use EHRStruct to evaluate 20 advanced and representative LLMs, covering both general and medical models.
+        We further analyze key factors influencing model performance, including input formats, few-shot generalisation, and finetuning strategies, and compare results with 11 state-of-the-art LLM-based enhancement methods for structured data reasoning. 
+        Our results indicate that many structured EHR tasks place high demands on the understanding and reasoning capabilities of LLMs.
+        In response, we propose SEMaster, a code-augmented method that achieves state-of-the-art performance and offers practical insights to guide future research.
+      </div>
+    </div>
+
+    <div class="title" style="margin-top: 60px;"><span class="highlight">EHRStruct</span> Leaderboard</div>
+    <div class="subtitle"><em>Which model performs best on structured EHR tasks?</em></div>
+
+    <div class="tab-header">
+      <div class="tab-group">
+        <button class="tab-btn" onclick="showTask('D-U1')">D-U1</button>
+        <button class="tab-btn" onclick="showTask('D-U2')">D-U2</button>
+        <button class="tab-btn" onclick="showTask('D-R1')">D-R1</button>
+        <button class="tab-btn" onclick="showTask('D-R2')">D-R2</button>
+        <button class="tab-btn" onclick="showTask('D-R3')">D-R3</button>
+        <button class="tab-btn" onclick="showTask('D-R4')">D-R4</button>
+        <button class="tab-btn" onclick="showTask('D-R5')">D-R5</button>
+        <button class="tab-btn" onclick="showTask('K-U1')">K-U1</button>
+        <button class="tab-btn" onclick="showTask('K-R1')">K-R1</button>
+        <button class="tab-btn" onclick="showTask('K-R2')">K-R2</button>
+        <button class="tab-btn" onclick="showTask('K-R3')">K-R3</button>
+      </div>
+      <button id="toggleDataset" onclick="toggleDataset()" class="toggle-btn">Switch to eICU</button>
+    </div>
+
+    <div class="abstract-box">
+      <div class="abstract-title">Task Overview</div>
+      <div class="abstract-text">
+        <strong>Overview of the 11 structured tasks in EHRStruct</strong>, categorized by scenario (Data-Driven vs. Knowledge-Driven) and cognitive level (Understanding vs. Reasoning). <br><br>
+        <strong>Data-Driven tasks</strong> include: <br>
+        <strong>D-U1/U2</strong>: data filtering based on field conditions; <br>
+        <strong>D-R1/R2/R3</strong>: value aggregation including count, average, and sum; <br>
+        <strong>D-R4/R5</strong>: arithmetic reasoning over numeric field trends. <br><br>
+        <strong>Knowledge-Driven tasks</strong> include: <br>
+        <strong>K-U1</strong>: clinical code identification; <br>
+        <strong>K-R1</strong>: mortality prediction; <br>
+        <strong>K-R2</strong>: disease prediction based on clinical profiles; <br>
+        <strong>K-R3</strong>: medication recommendation tailored to patient characteristics.
+      </div>
+    </div>
+
+    <div id="leaderboard" style="margin-top: 40px; min-height: 300px; text-align: center; color: #999;">
+      <em>Select a task to view leaderboard results.</em>
+    </div>
+  </div>
+
+  <script>
+    let currentDataset = 'synthea';
+    let currentTask = null;
+
+    function toggleDataset() {
+      currentDataset = currentDataset === 'synthea' ? 'eicu' : 'synthea';
+      document.getElementById('toggleDataset').innerText =
+        currentDataset === 'synthea' ? 'Switch to eICU' : 'Switch to Synthea';
+      if (currentTask) {
+        showTask(currentTask);
+      }
+    }
+
+    function showTask(task) {
+      currentTask = task;
+      document.getElementById('leaderboard').innerHTML =
+        `<p><strong>${task}</strong> results on <strong>${currentDataset}</strong> dataset will be shown here.</p>` +
+        `<p style='color: #aaa'>(Table placeholder for ${task} leaderboard)</p>`;
+    }
+  </script>
+</body>
+</html>
