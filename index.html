@@ -82,14 +82,14 @@
   </div>
 </div>
 
-  <!-- 👇 插在原始 HTML 尾部的结构下方，继续写排行榜部分 -->
+<!-- 👇 插在原始 HTML 尾部的结构下方，继续写排行榜部分 -->
 <div class="container">
   <div class="title" style="margin-top: 60px;">EHRStruct Leaderboard</div>
   <div class="subtitle"><em>Which model performs best on structured EHR tasks?</em></div>
 
-  <!-- 切换按钮 -->
-  <div style="margin: 20px 0; text-align: center;">
-    <button id="toggleDataset" onclick="toggleDataset()" style="padding: 10px 20px; background-color: #7e3af2; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">
+  <!-- 切换按钮精简美观版 -->
+  <div style="margin: 20px auto; text-align: center;">
+    <button id="toggleDataset" onclick="toggleDataset()" class="toggle-btn">
       Switch to eICU
     </button>
   </div>
@@ -111,21 +111,20 @@
     </div>
   </div>
 
-  <!-- 任务切换 Tab -->
+  <!-- 任務切換按鈕模塊化樣式（仿 VBench） -->
   <div style="margin-top: 30px; text-align: center;">
-    <span style="font-weight: bold; font-size: 18px;">Select Task:</span><br><br>
-    <div id="taskTabs" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-      <button class="task-button" onclick="showTask('D-U1')">D-U1</button>
-      <button class="task-button" onclick="showTask('D-U2')">D-U2</button>
-      <button class="task-button" onclick="showTask('D-R1')">D-R1</button>
-      <button class="task-button" onclick="showTask('D-R2')">D-R2</button>
-      <button class="task-button" onclick="showTask('D-R3')">D-R3</button>
-      <button class="task-button" onclick="showTask('D-R4')">D-R4</button>
-      <button class="task-button" onclick="showTask('D-R5')">D-R5</button>
-      <button class="task-button" onclick="showTask('K-U1')">K-U1</button>
-      <button class="task-button" onclick="showTask('K-R1')">K-R1</button>
-      <button class="task-button" onclick="showTask('K-R2')">K-R2</button>
-      <button class="task-button" onclick="showTask('K-R3')">K-R3</button>
+    <div class="tab-bar">
+      <button class="tab-btn" onclick="showTask('D-U1')">D-U1</button>
+      <button class="tab-btn" onclick="showTask('D-U2')">D-U2</button>
+      <button class="tab-btn" onclick="showTask('D-R1')">D-R1</button>
+      <button class="tab-btn" onclick="showTask('D-R2')">D-R2</button>
+      <button class="tab-btn" onclick="showTask('D-R3')">D-R3</button>
+      <button class="tab-btn" onclick="showTask('D-R4')">D-R4</button>
+      <button class="tab-btn" onclick="showTask('D-R5')">D-R5</button>
+      <button class="tab-btn" onclick="showTask('K-U1')">K-U1</button>
+      <button class="tab-btn" onclick="showTask('K-R1')">K-R1</button>
+      <button class="tab-btn" onclick="showTask('K-R2')">K-R2</button>
+      <button class="tab-btn" onclick="showTask('K-R3')">K-R3</button>
     </div>
   </div>
 
@@ -157,19 +156,48 @@
 </script>
 
 <style>
-  .task-button {
+  .toggle-btn {
     padding: 8px 16px;
-    background-color: #f0f0f0;
+    background-color: #eee;
+    color: #444;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
+    transition: all 0.2s;
   }
-  .task-button:hover {
-    background-color: #e0e0ff;
+  .toggle-btn:hover {
+    background-color: #dcd7ff;
+    border-color: #7e3af2;
+    color: #000;
+  }
+
+  .tab-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    background-color: #f6f6f6;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .tab-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover {
+    background-color: #f0eaff;
     border-color: #7e3af2;
   }
 </style>
+
 
 </body>
 </html>
