@@ -81,5 +81,95 @@
     </div>
   </div>
 </div>
+
+  <!-- 👇 插在原始 HTML 尾部的结构下方，继续写排行榜部分 -->
+<div class="container">
+  <div class="title" style="margin-top: 60px;">EHRStruct Leaderboard</div>
+  <div class="subtitle"><em>Which model performs best on structured EHR tasks?</em></div>
+
+  <!-- 切换按钮 -->
+  <div style="margin: 20px 0; text-align: center;">
+    <button id="toggleDataset" onclick="toggleDataset()" style="padding: 10px 20px; background-color: #7e3af2; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">
+      Switch to eICU
+    </button>
+  </div>
+
+  <!-- 简要任务描述 -->
+  <div class="abstract-box">
+    <div class="abstract-title">Task Overview</div>
+    <div class="abstract-text">
+      <strong>Overview of the 11 structured tasks in EHRStruct</strong>, categorized by scenario (Data-Driven vs. Knowledge-Driven) and cognitive level (Understanding vs. Reasoning). <br><br>
+      <strong>Data-Driven tasks</strong> include: <br>
+      <strong>D-U1/U2</strong>: data filtering based on field conditions; <br>
+      <strong>D-R1/R2/R3</strong>: value aggregation including count, average, and sum; <br>
+      <strong>D-R4/R5</strong>: arithmetic reasoning over numeric field trends. <br><br>
+      <strong>Knowledge-Driven tasks</strong> include: <br>
+      <strong>K-U1</strong>: clinical code identification; <br>
+      <strong>K-R1</strong>: mortality prediction; <br>
+      <strong>K-R2</strong>: disease prediction based on clinical profiles; <br>
+      <strong>K-R3</strong>: medication recommendation tailored to patient characteristics.
+    </div>
+  </div>
+
+  <!-- 任务切换 Tab -->
+  <div style="margin-top: 30px; text-align: center;">
+    <span style="font-weight: bold; font-size: 18px;">Select Task:</span><br><br>
+    <div id="taskTabs" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+      <button class="task-button" onclick="showTask('D-U1')">D-U1</button>
+      <button class="task-button" onclick="showTask('D-U2')">D-U2</button>
+      <button class="task-button" onclick="showTask('D-R1')">D-R1</button>
+      <button class="task-button" onclick="showTask('D-R2')">D-R2</button>
+      <button class="task-button" onclick="showTask('D-R3')">D-R3</button>
+      <button class="task-button" onclick="showTask('D-R4')">D-R4</button>
+      <button class="task-button" onclick="showTask('D-R5')">D-R5</button>
+      <button class="task-button" onclick="showTask('K-U1')">K-U1</button>
+      <button class="task-button" onclick="showTask('K-R1')">K-R1</button>
+      <button class="task-button" onclick="showTask('K-R2')">K-R2</button>
+      <button class="task-button" onclick="showTask('K-R3')">K-R3</button>
+    </div>
+  </div>
+
+  <!-- 排行榜容器 -->
+  <div id="leaderboard" style="margin-top: 40px; min-height: 300px; text-align: center; color: #999;">
+    <em>Select a task to view leaderboard results.</em>
+  </div>
+</div>
+
+<script>
+  let currentDataset = 'synthea';
+  let currentTask = null;
+
+  function toggleDataset() {
+    currentDataset = currentDataset === 'synthea' ? 'eicu' : 'synthea';
+    document.getElementById('toggleDataset').innerText =
+      currentDataset === 'synthea' ? 'Switch to eICU' : 'Switch to Synthea';
+    if (currentTask) {
+      showTask(currentTask);
+    }
+  }
+
+  function showTask(task) {
+    currentTask = task;
+    document.getElementById('leaderboard').innerHTML =
+      `<p><strong>${task}</strong> results on <strong>${currentDataset}</strong> dataset will be shown here.</p>` +
+      `<p style='color: #aaa'>(Table placeholder for ${task} leaderboard)</p>`;
+  }
+</script>
+
+<style>
+  .task-button {
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .task-button:hover {
+    background-color: #e0e0ff;
+    border-color: #7e3af2;
+  }
+</style>
+
 </body>
 </html>
