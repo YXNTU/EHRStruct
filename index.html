@@ -1,8 +1,84 @@
 <!DOCTYPE html>
-<html>
-  <head><title>My GitHub Pages</title></head>
-  <body>
-    <h1>Hello from EHRStruct!</h1>
-    <p>This is a test page.</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EHRStruct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fdfdfd;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .title {
+      font-size: 36px;
+      font-weight: 700;
+      color: #7e3af2;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    .abstract-box {
+      margin-top: 40px;
+      padding: 20px;
+      border-left: 5px solid #7e3af2;
+      background-color: #f9f8ff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .abstract-title {
+      font-weight: 600;
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .abstract-text {
+      font-size: 16px;
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="title">EHRStruct: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks</div>
+
+  <div class="image-container">
+    <img src="overview.png" alt="Overview of EHRStruct" style="width:100%; max-width:800px; margin: 30px auto; display:block;">
+  </div>
+
+  <div class="abstract-box">
+    <div class="abstract-title">Abstract</div>
+    <div class="abstract-text">
+      Structured Electronic Health Record (EHR) data stores patient information in relational tables and plays a central role in clinical decision-making. 
+      Recent advances have explored the use of large language models (LLMs) to process such data, showing promise across various clinical tasks.
+      <br><br>
+      However, the absence of standardized evaluation frameworks and clearly defined tasks makes it difficult to systematically assess and compare LLM performance on structured EHR data.
+      To address these evaluation challenges, we introduce EHRStruct, a benchmark specifically designed to evaluate LLMs on structured EHR tasks.
+      <br><br>
+      EHRStruct defines 11 representative tasks spanning diverse clinical needs and includes 2,200 task-specific evaluation samples derived from two widely used EHR datasets.
+      We use EHRStruct to evaluate 20 advanced and representative LLMs, covering both general and medical models.
+      <br><br>
+      We further analyze key factors influencing model performance, including input formats, few-shot generalisation, and finetuning strategies, and compare results with 11 state-of-the-art LLM-based enhancement methods for structured data reasoning. 
+      <br><br>
+      Our results indicate that many structured EHR tasks place high demands on the understanding and reasoning capabilities of LLMs.
+      In response, we propose SEMaster, a code-augmented method that achieves state-of-the-art performance and offers practical insights to guide future research.
+    </div>
+  </div>
+</div>
+</body>
 </html>
