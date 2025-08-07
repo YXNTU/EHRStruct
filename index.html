@@ -785,48 +785,60 @@
 
 
 
-<div style="margin-top: 60px;">
-  <!-- 📊 Data-Driven Content -->
-<div id="dataDrivenContent">
-  <div style="display: flex; gap: 20px;">
-    <!-- 📷 PNG 图区域 -->
-    <div style="flex: 7;">
-      <img src="Gemini-2.0_general_D_tasks.png" alt="Data-Driven Methods" style="width: 100%; border-radius: 4px;" />
+<!-- 📌 外层间距和标题 -->
+<div style="width: 50%; margin: 80px auto 20px auto; text-align: center;">
+  <div class="abstract-title">Method Leaderboard</div>
+</div>
+
+<!-- 📦 白色内容盒子 -->
+<div class="white-box" style="width: 50%; margin: 0 auto;">
+
+  <!-- 🔘 切换按钮 -->
+  <div style="text-align: right; margin-bottom: 15px;">
+    <button id="toggleMode" class="toggle-source-btn">To Knowledge-Driven</button>
+  </div>
+
+  <!-- 🔁 切换内容区域 -->
+  <div id="methodContent" style="transition: all 0.3s ease;">
+
+    <!-- 📊 Data-Driven -->
+    <div id="dataDrivenContent">
+      <div style="display: flex; gap: 20px;">
+        <div style="flex: 7;">
+          <img src="Gemini-2.0_general_D_tasks.png" alt="Data-Driven Methods" style="width: 100%; border-radius: 4px;" />
+        </div>
+        <div style="flex: 3; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
+          <strong>Legend:</strong><br>
+          <span style="color: #E41A1C;">■ C.L.E.A.R</span><br>
+          <span style="color: #FF7F00;">■ TaT</span><br>
+          <span style="color: #4DAF4A;">■ TableMaster</span><br>
+          <span style="color: #17BECF;">■ TIDE</span><br>
+          <span style="color: #377EB8;">■ E⁵</span><br>
+          <span style="color: #984EA3;">■ GraphOTTER</span><br>
+          <span style="color: #F781BF;">■ H-STAR</span><br>
+          <span style="color: #A65628;">■ Table-R1</span>
+        </div>
+      </div>
     </div>
 
-    <!-- 图例区域 -->
-    <div style="flex: 3; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
-      <strong>Legend (Non-Medical Methods):</strong><br>
-      <span style="color: #E41A1C;">■ C.L.E.A.R</span><br>
-      <span style="color: #FF7F00;">■ TaT</span><br>
-      <span style="color: #4DAF4A;">■ TableMaster</span><br>
-      <span style="color: #17BECF;">■ TIDE</span><br>
-      <span style="color: #377EB8;">■ E⁵</span><br>
-      <span style="color: #984EA3;">■ GraphOTTER</span><br>
-      <span style="color: #F781BF;">■ H-STAR</span><br>
-      <span style="color: #A65628;">■ Table-R1</span>
+    <!-- 🧬 Knowledge-Driven -->
+    <div id="knowledgeDrivenContent" style="display: none;">
+      <div style="display: flex; gap: 20px;">
+        <div style="flex: 7;">
+          <img src="Gemini-2.0_medical_K_tasks.png" alt="Knowledge-Driven Methods" style="width: 100%; border-radius: 4px;" />
+        </div>
+        <div style="flex: 3; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
+          <strong>Legend:</strong><br>
+          <span style="color: #228B22;">■ LLM4Healthcare</span><br>
+          <span style="color: #DAA520;">■ DeLLiriuM</span><br>
+          <span style="color: #6A5ACD;">■ EnsembleLLM</span>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
 
-<!-- 🧬 Knowledge-Driven Content -->
-<div id="knowledgeDrivenContent" style="display: none;">
-  <div style="display: flex; gap: 20px;">
-    <!-- 📷 PNG 图区域 -->
-    <div style="flex: 7;">
-      <img src="Gemini-2.0_medical_K_tasks.png" alt="Knowledge-Driven Methods" style="width: 100%; border-radius: 4px;" />
-    </div>
-
-    <!-- 图例区域 -->
-    <div style="flex: 3; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
-      <strong>Legend (Medical Methods):</strong><br>
-      <span style="color: #228B22;">■ LLM4Healthcare</span><br>
-      <span style="color: #DAA520;">■ DeLLiriuM</span><br>
-      <span style="color: #6A5ACD;">■ EnsembleLLM</span>
-    </div>
-  </div>
-</div>
-  </div>
 
 
 
