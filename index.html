@@ -2,220 +2,966 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>EHRStruct</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EHRStruct Overview</title>
   <style>
     body {
-      font-family: "Segoe UI", Roboto, sans-serif;
+      background-color: #f2f2f2; /* 整体背景为淡灰色 */
+      color: #000000; /* 默认黑色字体 */
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f2f2f2;
-      color: #333;
-      line-height: 1.6;
     }
 
     .container {
-      max-width: 960px;
+      max-width: 900px;
       margin: 40px auto;
       padding: 20px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
 
     .title {
-      font-size: 36px;
-      font-weight: 700;
-      color: #000;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 30px;
     }
 
     .title .highlight {
-      color: #7e3af2;
+      color: #1E90FF; /* EHRStruct 蓝色高亮 */
     }
 
-    .subtitle {
-      font-size: 20px;
-      margin-top: 10px;
-      color: #555;
-    }
-
-    .image-container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    .overview-paragraph {
-      background-color: #fff;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 8px;
-    }
-
-    .abstract-box {
-      margin-top: 40px;
+    .white-box {
+      background-color: #ffffff;
       padding: 30px;
-      background-color: #fff;
-      text-align: center;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 40px;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-width: 800px;
+      margin: 30px auto;
+      display: block;
+    }
+
+    .overview-text {
+      font-size: 16px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .overview-text strong {
+      font-weight: bold;
     }
 
     .abstract-title {
-      font-weight: 600;
-      font-size: 24px;
-      color: #222;
-      margin-bottom: 16px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .abstract-box {
+      background-color: #ffffff;
+      padding: 20px 25px;
+      border-radius: 6px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
     }
 
     .abstract-text {
       font-size: 17px;
+      line-height: 1.7;
       text-align: justify;
-      max-width: 800px;
-      margin: 0 auto;
     }
+	 .tab-bar {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0 0;
+    border-bottom: 2px solid #e0e0e0;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 
-    .tab-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      background-color: #f0f0f0;
-      padding: 10px 15px;
-      border-radius: 10px 10px 0 0;
-      border: 1px solid #ccc;
-      border-bottom: none;
-      margin-top: 40px;
-    }
+  .tab-button {
+    padding: 6px 14px;
+    border: none;
+    background: none;
+    font-size: 15px;
+    cursor: pointer;
+    color: #333;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    margin-bottom: -1px; /* ✨ 关键：让选中按钮底部和内容贴合 */
+  }
 
-    .tab-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
+  .tab-button.active {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid #ffffff; /* ✨ 让按钮底部无缝接到内容区域 */
+    font-weight: bold;
+    color: #000;
+    z-index: 2;
+  }
 
-    .tab-btn {
-      padding: 6px 12px;
-      font-size: 14px;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 6px 6px 0 0;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+  .tab-container {
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #ffffff;
+    border-radius: 0 0 6px 6px;
+    padding: 20px;
+  }
 
-    .tab-btn:hover {
-      background-color: #f0eaff;
-      border-color: #7e3af2;
-    }
+  .tab-pane {
+    display: none;
+  }
 
-    .toggle-btn {
-      padding: 8px 14px;
-      background-color: #fdfdfd;
-      color: #444;
-      border: 1px solid #bbb;
-      border-radius: 20px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+  .tab-pane.active {
+    display: block;
+  }
 
-    .toggle-btn:hover {
-      background-color: #ded7ff;
-      border-color: #7e3af2;
-    }
+  .toggle-source-btn {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .toggle-source-btn:hover {
+    background-color: #e0e0e0;
+  }
+	  
+	  .toggle-source-btn {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.toggle-source-btn:hover {
+  background-color: #eaeaea;
+}
+
   </style>
+<!-- ✅ DataTables 样式 -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<!-- ✅ jQuery + DataTables 脚本 -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
 </head>
 <body>
   <div class="container">
-    <div class="title"><span class="highlight">EHRStruct</span>: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks</div>
-
-    <div class="image-container">
-      <img src="Overview%20of%20EHRStruct.png" alt="Overview of EHRStruct" style="width:100%; max-width:800px; margin: 30px auto; display:block;">
+    <div class="title">
+      <span class="highlight">EHRStruct</span>: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks
     </div>
 
-    <div class="overview-paragraph">
-      <p style="font-size: 16px; text-align: justify;">
-        <strong>Overview of EHRStruct.</strong> <strong>EHRStruct</strong> comprises four key components that together define a comprehensive benchmark for evaluating LLMs on structured EHR data. <strong>(1) Task Synthesis</strong> identifies clinically relevant reasoning needs through a collaboration between CS researchers and medical experts, combining prior research distillation with real-world clinical priorities. <strong>(2) Task Taxonomy Construction</strong> organizes tasks along three dimensions—clinical scenario (data- vs. knowledge-driven), cognitive level (understanding vs. reasoning), and functional type—forming a principled evaluation space. <strong>(3) Task-Specific Sample Extraction</strong> selects representative structured tables from both synthetic and real-world EHR datasets (Synthea and eICU), and generates 2,200 high-quality question–answer samples through a validated annotation pipeline. <strong>(4) Model Evaluation Pipeline</strong> transforms structured tables into multiple input formats, applies prompting, enhancement, or fine-tuning techniques to 20 representative LLMs, and evaluates outputs using automated scoring and leaderboard comparison, including our proposed SEMaster method.
-      </p>
+    <div class="white-box">
+      <div class="image-container">
+        <img src="Overview%20of%20EHRStruct.png" alt="Overview of EHRStruct">
+      </div>
+
+      <div class="overview-text">
+        <strong>EHRStruct</strong> comprises four key components that together define a comprehensive benchmark for evaluating LLMs on structured EHR data. 
+
+        <strong>(1) Task Synthesis</strong> identifies clinically relevant reasoning needs through a collaboration between CS researchers and medical experts, combining prior research distillation with real-world clinical priorities. 
+
+        <strong>(2) Task Taxonomy Construction</strong> organizes tasks along three dimensions—clinical scenario (data- vs. knowledge-driven), cognitive level (understanding vs. reasoning), and functional type—forming a principled evaluation space. 
+
+        <strong>(3) Task-Specific Sample Extraction</strong> selects representative structured tables from both synthetic and real-world EHR datasets (Synthea and eICU), and generates 2,200 high-quality question–answer samples through a validated annotation pipeline. 
+
+        <strong>(4) Model Evaluation Pipeline</strong> transforms structured tables into multiple input formats, applies prompting, enhancement, or fine-tuning techniques to 20 representative LLMs, and evaluates outputs using automated scoring and leaderboard comparison, including our proposed SEMaster method.
+      </div>
     </div>
 
+    <div class="abstract-title">Abstract</div>
     <div class="abstract-box">
-      <div class="abstract-title">Abstract</div>
       <div class="abstract-text">
         Structured Electronic Health Record (EHR) data stores patient information in relational tables and plays a central role in clinical decision-making. 
+
         Recent advances have explored the use of large language models (LLMs) to process such data, showing promise across various clinical tasks.
+
         However, the absence of standardized evaluation frameworks and clearly defined tasks makes it difficult to systematically assess and compare LLM performance on structured EHR data.
+
         To address these evaluation challenges, we introduce EHRStruct, a benchmark specifically designed to evaluate LLMs on structured EHR tasks.
+
         EHRStruct defines 11 representative tasks spanning diverse clinical needs and includes 2,200 task-specific evaluation samples derived from two widely used EHR datasets.
+
         We use EHRStruct to evaluate 20 advanced and representative LLMs, covering both general and medical models.
+
         We further analyze key factors influencing model performance, including input formats, few-shot generalisation, and finetuning strategies, and compare results with 11 state-of-the-art LLM-based enhancement methods for structured data reasoning. 
+
         Our results indicate that many structured EHR tasks place high demands on the understanding and reasoning capabilities of LLMs.
+
         In response, we propose SEMaster, a code-augmented method that achieves state-of-the-art performance and offers practical insights to guide future research.
       </div>
     </div>
-
-    <div class="title" style="margin-top: 60px;"><span class="highlight">EHRStruct</span> Leaderboard</div>
-    <div class="subtitle"><em>Which model performs best on structured EHR tasks?</em></div>
-
-    <div class="tab-header">
-      <div class="tab-group">
-        <button class="tab-btn" onclick="showTask('D-U1')">D-U1</button>
-        <button class="tab-btn" onclick="showTask('D-U2')">D-U2</button>
-        <button class="tab-btn" onclick="showTask('D-R1')">D-R1</button>
-        <button class="tab-btn" onclick="showTask('D-R2')">D-R2</button>
-        <button class="tab-btn" onclick="showTask('D-R3')">D-R3</button>
-        <button class="tab-btn" onclick="showTask('D-R4')">D-R4</button>
-        <button class="tab-btn" onclick="showTask('D-R5')">D-R5</button>
-        <button class="tab-btn" onclick="showTask('K-U1')">K-U1</button>
-        <button class="tab-btn" onclick="showTask('K-R1')">K-R1</button>
-        <button class="tab-btn" onclick="showTask('K-R2')">K-R2</button>
-        <button class="tab-btn" onclick="showTask('K-R3')">K-R3</button>
-      </div>
-      <button id="toggleDataset" onclick="toggleDataset()" class="toggle-btn">Switch to eICU</button>
-    </div>
-
-    <div class="abstract-box">
-      <div class="abstract-title">Task Overview</div>
-      <div class="abstract-text">
-        <strong>Overview of the 11 structured tasks in EHRStruct</strong>, categorized by scenario (Data-Driven vs. Knowledge-Driven) and cognitive level (Understanding vs. Reasoning). <br><br>
-        <strong>Data-Driven tasks</strong> include: <br>
-        <strong>D-U1/U2</strong>: data filtering based on field conditions; <br>
-        <strong>D-R1/R2/R3</strong>: value aggregation including count, average, and sum; <br>
-        <strong>D-R4/R5</strong>: arithmetic reasoning over numeric field trends. <br><br>
-        <strong>Knowledge-Driven tasks</strong> include: <br>
-        <strong>K-U1</strong>: clinical code identification; <br>
-        <strong>K-R1</strong>: mortality prediction; <br>
-        <strong>K-R2</strong>: disease prediction based on clinical profiles; <br>
-        <strong>K-R3</strong>: medication recommendation tailored to patient characteristics.
-      </div>
-    </div>
-
-    <div id="leaderboard" style="margin-top: 40px; min-height: 300px; text-align: center; color: #999;">
-      <em>Select a task to view leaderboard results.</em>
-    </div>
   </div>
 
-  <script>
-    let currentDataset = 'synthea';
-    let currentTask = null;
+<div style="width: 50%; margin: 0 auto;">
+	
+	  <div class="abstract-title"> Model  Leaderboard
+  </div>
+<div class="abstract-box" style="margin-top: 40px;">
+  <div style="text-align: center; font-size: 16px; font-style: italic; margin-bottom: 20px;">
+    Which model performs best on structured EHR tasks?
+  </div>
 
-    function toggleDataset() {
-      currentDataset = currentDataset === 'synthea' ? 'eicu' : 'synthea';
-      document.getElementById('toggleDataset').innerText =
-        currentDataset === 'synthea' ? 'Switch to eICU' : 'Switch to Synthea';
-      if (currentTask) {
-        showTask(currentTask);
+  <div class="abstract-text">
+    <strong>Overview of the 11 structured tasks in EHRStruct</strong>, categorized by scenario (Data-Driven vs. Knowledge-Driven) and cognitive level (Understanding vs. Reasoning).  
+    <br>
+    <strong>Data-Driven tasks</strong> include: <br>
+    <strong>D-U1/U2</strong>: data filtering based on field conditions; <br>
+    <strong>D-R1/R2/R3</strong>: value aggregation including count, average, and sum; <br>
+    <strong>D-R4/R5</strong>: arithmetic reasoning over numeric field trends. <br>
+    <strong>Knowledge-Driven tasks</strong> include: <br>
+    <strong>K-U1</strong>: clinical code identification; <br>
+    <strong>K-R1</strong>: mortality prediction; <br>
+    <strong>K-R2</strong>: disease prediction based on clinical profiles; <br>
+    <strong>K-R3</strong>: medication recommendation tailored to patient characteristics.
+  </div>
+	
+<!-- 📦 外层容器包住按钮、tab、表格 -->
+<div class="leaderboard-wrapper" style="margin-top: 30px;">
+
+  <!-- 🔘 顶部标签栏 -->
+  <div class="tab-bar" id="taskTabs">
+    <button class="tab-button active" data-target="D-U1">D-U1</button>
+    <button class="tab-button" data-target="D-U2">D-U2</button>
+    <button class="tab-button" data-target="D-R1">D-R1</button>
+    <button class="tab-button" data-target="D-R2">D-R2</button>
+    <button class="tab-button" data-target="D-R3">D-R3</button>
+    <button class="tab-button" data-target="D-R4">D-R4</button>
+    <button class="tab-button" data-target="D-R5">D-R5</button>
+    <button class="tab-button" data-target="K-U1">K-U1</button>
+    <button class="tab-button" data-target="K-R1">K-R1</button>
+    <button class="tab-button" data-target="K-R2">K-R2</button>
+    <button class="tab-button" data-target="K-R3">K-R3</button>
+  </div>
+
+ <div class="tab-container">
+<div class="tab-pane active" id="D-U1">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>6</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>8</td></tr>
+      <tr><td>GPT3.5turbo</td><td>graph-structured representation</td><td>7</td></tr>
+      <tr><td>GPT3.5turbo</td><td>natural language description</td><td>5</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>79</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>75</td></tr>
+      <tr><td>GPT4.1</td><td>graph-structured representation</td><td>58</td></tr>
+      <tr><td>GPT4.1</td><td>natural language description</td><td>78</td></tr>
+      <tr><td>Gemini1.5</td><td>plain text conversion</td><td>29</td></tr>
+      <tr><td>Gemini1.5</td><td>special character separation</td><td>27</td></tr>
+      <tr><td>Gemini1.5</td><td>graph-structured representation</td><td>39</td></tr>
+      <tr><td>Gemini1.5</td><td>natural language description</td><td>28</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>64</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>77</td></tr>
+      <tr><td>Gemini2.0</td><td>graph-structured representation</td><td>72</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>57</td></tr>
+      <tr><td>Gemini2.5</td><td>plain text conversion</td><td>98</td></tr>
+      <tr><td>Gemini2.5</td><td>special character separation</td><td>95</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>98</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>96</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>plain text conversion</td><td>72</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>special character separation</td><td>72</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>graph-structured representation</td><td>26</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>natural language description</td><td>65</td></tr>
+      <tr><td>DeepSeekV3</td><td>plain text conversion</td><td>72</td></tr>
+      <tr><td>DeepSeekV3</td><td>special character separation</td><td>66</td></tr>
+      <tr><td>DeepSeekV3</td><td>graph-structured representation</td><td>72</td></tr>
+      <tr><td>DeepSeekV3</td><td>natural language description</td><td>65</td></tr>
+      <tr><td>Qwen7B</td><td>plain text conversion</td><td>1</td></tr>
+      <tr><td>Qwen7B</td><td>special character separation</td><td>1</td></tr>
+      <tr><td>Qwen7B</td><td>graph-structured representation</td><td>1</td></tr>
+      <tr><td>Qwen7B</td><td>natural language description</td><td>2</td></tr>
+      <tr><td>Qwen14B</td><td>plain text conversion</td><td>4</td></tr>
+      <tr><td>Qwen14B</td><td>special character separation</td><td>5</td></tr>
+      <tr><td>Qwen14B</td><td>graph-structured representation</td><td>5</td></tr>
+      <tr><td>Qwen14B</td><td>natural language description</td><td>2</td></tr>
+      <tr><td>Qwen32B</td><td>plain text conversion</td><td>25</td></tr>
+      <tr><td>Qwen32B</td><td>special character separation</td><td>26</td></tr>
+      <tr><td>Qwen32B</td><td>graph-structured representation</td><td>38</td></tr>
+      <tr><td>Qwen32B</td><td>natural language description</td><td>32</td></tr>
+      <tr><td>Qwen72B</td><td>plain text conversion</td><td>15</td></tr>
+      <tr><td>Qwen72B</td><td>special character separation</td><td>18</td></tr>
+      <tr><td>Qwen72B</td><td>graph-structured representation</td><td>16</td></tr>
+      <tr><td>Qwen72B</td><td>natural language description</td><td>21</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="tab-pane" id="D-U2">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>15</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>14</td></tr>
+      <tr><td>GPT3.5turbo</td><td>graph-structured representation</td><td>28</td></tr>
+      <tr><td>GPT3.5turbo</td><td>natural language description</td><td>16</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>51</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>50</td></tr>
+      <tr><td>GPT4.1</td><td>graph-structured representation</td><td>54</td></tr>
+      <tr><td>GPT4.1</td><td>natural language description</td><td>51</td></tr>
+      <tr><td>Gemini1.5</td><td>plain text conversion</td><td>34</td></tr>
+      <tr><td>Gemini1.5</td><td>special character separation</td><td>40</td></tr>
+      <tr><td>Gemini1.5</td><td>graph-structured representation</td><td>42</td></tr>
+      <tr><td>Gemini1.5</td><td>natural language description</td><td>33</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>43</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>50</td></tr>
+      <tr><td>Gemini2.0</td><td>graph-structured representation</td><td>46</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>40</td></tr>
+      <tr><td>Gemini2.5</td><td>plain text conversion</td><td>58</td></tr>
+      <tr><td>Gemini2.5</td><td>special character separation</td><td>57</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>57</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>58</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>plain text conversion</td><td>41</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>special character separation</td><td>37</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>graph-structured representation</td><td>19</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>natural language description</td><td>39</td></tr>
+      <tr><td>DeepSeekV3</td><td>plain text conversion</td><td>41</td></tr>
+      <tr><td>DeepSeekV3</td><td>special character separation</td><td>40</td></tr>
+      <tr><td>DeepSeekV3</td><td>graph-structured representation</td><td>37</td></tr>
+      <tr><td>DeepSeekV3</td><td>natural language description</td><td>39</td></tr>
+      <tr><td>Qwen7B</td><td>plain text conversion</td><td>7</td></tr>
+      <tr><td>Qwen7B</td><td>special character separation</td><td>8</td></tr>
+      <tr><td>Qwen7B</td><td>graph-structured representation</td><td>12</td></tr>
+      <tr><td>Qwen7B</td><td>natural language description</td><td>9</td></tr>
+      <tr><td>Qwen14B</td><td>plain text conversion</td><td>30</td></tr>
+      <tr><td>Qwen14B</td><td>special character separation</td><td>29</td></tr>
+      <tr><td>Qwen14B</td><td>graph-structured representation</td><td>28</td></tr>
+      <tr><td>Qwen14B</td><td>natural language description</td><td>22</td></tr>
+      <tr><td>Qwen32B</td><td>plain text conversion</td><td>25</td></tr>
+      <tr><td>Qwen32B</td><td>special character separation</td><td>23</td></tr>
+      <tr><td>Qwen32B</td><td>graph-structured representation</td><td>25</td></tr>
+      <tr><td>Qwen32B</td><td>natural language description</td><td>22</td></tr>
+      <tr><td>Qwen72B</td><td>plain text conversion</td><td>6</td></tr>
+      <tr><td>Qwen72B</td><td>special character separation</td><td>6</td></tr>
+      <tr><td>Qwen72B</td><td>graph-structured representation</td><td>7</td></tr>
+      <tr><td>Qwen72B</td><td>natural language description</td><td>9</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="tab-pane" id="D-R1">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>14</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>20</td></tr>
+      <tr><td>GPT3.5turbo</td><td>graph-structured representation</td><td>10</td></tr>
+      <tr><td>GPT3.5turbo</td><td>natural language description</td><td>15</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>52</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>43</td></tr>
+      <tr><td>GPT4.1</td><td>graph-structured representation</td><td>48</td></tr>
+      <tr><td>GPT4.1</td><td>natural language description</td><td>48</td></tr>
+      <tr><td>Gemini1.5</td><td>plain text conversion</td><td>32</td></tr>
+      <tr><td>Gemini1.5</td><td>special character separation</td><td>21</td></tr>
+      <tr><td>Gemini1.5</td><td>graph-structured representation</td><td>36</td></tr>
+      <tr><td>Gemini1.5</td><td>natural language description</td><td>36</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>21</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>20</td></tr>
+      <tr><td>Gemini2.0</td><td>graph-structured representation</td><td>8</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>25</td></tr>
+      <tr><td>Gemini2.5</td><td>plain text conversion</td><td>92</td></tr>
+      <tr><td>Gemini2.5</td><td>special character separation</td><td>88</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>77</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>98</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>plain text conversion</td><td>18</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>special character separation</td><td>13</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>graph-structured representation</td><td>14</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>natural language description</td><td>13</td></tr>
+      <tr><td>DeepSeekV3</td><td>plain text conversion</td><td>8</td></tr>
+      <tr><td>DeepSeekV3</td><td>special character separation</td><td>9</td></tr>
+      <tr><td>DeepSeekV3</td><td>graph-structured representation</td><td>13</td></tr>
+      <tr><td>DeepSeekV3</td><td>natural language description</td><td>11</td></tr>
+      <tr><td>Qwen7B</td><td>plain text conversion</td><td>4</td></tr>
+      <tr><td>Qwen7B</td><td>special character separation</td><td>4</td></tr>
+      <tr><td>Qwen7B</td><td>graph-structured representation</td><td>4</td></tr>
+      <tr><td>Qwen7B</td><td>natural language description</td><td>8</td></tr>
+      <tr><td>Qwen14B</td><td>plain text conversion</td><td>19</td></tr>
+      <tr><td>Qwen14B</td><td>special character separation</td><td>17</td></tr>
+      <tr><td>Qwen14B</td><td>graph-structured representation</td><td>14</td></tr>
+      <tr><td>Qwen14B</td><td>natural language description</td><td>18</td></tr>
+      <tr><td>Qwen32B</td><td>plain text conversion</td><td>24</td></tr>
+      <tr><td>Qwen32B</td><td>special character separation</td><td>26</td></tr>
+      <tr><td>Qwen32B</td><td>graph-structured representation</td><td>20</td></tr>
+      <tr><td>Qwen32B</td><td>natural language description</td><td>22</td></tr>
+      <tr><td>Qwen72B</td><td>plain text conversion</td><td>27</td></tr>
+      <tr><td>Qwen72B</td><td>special character separation</td><td>23</td></tr>
+      <tr><td>Qwen72B</td><td>graph-structured representation</td><td>29</td></tr>
+      <tr><td>Qwen72B</td><td>natural language description</td><td>27</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="tab-pane" id="D-R2">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>18</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>25</td></tr>
+      <tr><td>GPT3.5turbo</td><td>graph-structured representation</td><td>19</td></tr>
+      <tr><td>GPT3.5turbo</td><td>natural language description</td><td>26</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>50</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>50</td></tr>
+      <tr><td>GPT4.1</td><td>graph-structured representation</td><td>60</td></tr>
+      <tr><td>GPT4.1</td><td>natural language description</td><td>57</td></tr>
+      <tr><td>Gemini1.5</td><td>plain text conversion</td><td>41</td></tr>
+      <tr><td>Gemini1.5</td><td>special character separation</td><td>28</td></tr>
+      <tr><td>Gemini1.5</td><td>graph-structured representation</td><td>39</td></tr>
+      <tr><td>Gemini1.5</td><td>natural language description</td><td>31</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>30</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>32</td></tr>
+      <tr><td>Gemini2.0</td><td>graph-structured representation</td><td>16</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>37</td></tr>
+      <tr><td>Gemini2.5</td><td>plain text conversion</td><td>82</td></tr>
+      <tr><td>Gemini2.5</td><td>special character separation</td><td>84</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>80</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>87</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>plain text conversion</td><td>51</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>special character separation</td><td>42</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>graph-structured representation</td><td>41</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>natural language description</td><td>49</td></tr>
+      <tr><td>DeepSeekV3</td><td>plain text conversion</td><td>37</td></tr>
+      <tr><td>DeepSeekV3</td><td>special character separation</td><td>42</td></tr>
+      <tr><td>DeepSeekV3</td><td>graph-structured representation</td><td>47</td></tr>
+      <tr><td>DeepSeekV3</td><td>natural language description</td><td>38</td></tr>
+      <tr><td>Qwen7B</td><td>plain text conversion</td><td>24</td></tr>
+      <tr><td>Qwen7B</td><td>special character separation</td><td>20</td></tr>
+      <tr><td>Qwen7B</td><td>graph-structured representation</td><td>19</td></tr>
+      <tr><td>Qwen7B</td><td>natural language description</td><td>16</td></tr>
+      <tr><td>Qwen14B</td><td>plain text conversion</td><td>17</td></tr>
+      <tr><td>Qwen14B</td><td>special character separation</td><td>14</td></tr>
+      <tr><td>Qwen14B</td><td>graph-structured representation</td><td>21</td></tr>
+      <tr><td>Qwen14B</td><td>natural language description</td><td>13</td></tr>
+      <tr><td>Qwen32B</td><td>plain text conversion</td><td>26</td></tr>
+      <tr><td>Qwen32B</td><td>special character separation</td><td>32</td></tr>
+      <tr><td>Qwen32B</td><td>graph-structured representation</td><td>28</td></tr>
+      <tr><td>Qwen32B</td><td>natural language description</td><td>35</td></tr>
+      <tr><td>Qwen72B</td><td>plain text conversion</td><td>48</td></tr>
+      <tr><td>Qwen72B</td><td>special character separation</td><td>42</td></tr>
+      <tr><td>Qwen72B</td><td>graph-structured representation</td><td>39</td></tr>
+      <tr><td>Qwen72B</td><td>natural language description</td><td>31</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="tab-pane" id="D-R3">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>7</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>18</td></tr>
+      <tr><td>GPT3.5turbo</td><td>graph-structured representation</td><td>12</td></tr>
+      <tr><td>GPT3.5turbo</td><td>natural language description</td><td>14</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>48</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>43</td></tr>
+      <tr><td>GPT4.1</td><td>graph-structured representation</td><td>47</td></tr>
+      <tr><td>GPT4.1</td><td>natural language description</td><td>45</td></tr>
+      <tr><td>Gemini1.5</td><td>plain text conversion</td><td>21</td></tr>
+      <tr><td>Gemini1.5</td><td>special character separation</td><td>13</td></tr>
+      <tr><td>Gemini1.5</td><td>graph-structured representation</td><td>17</td></tr>
+      <tr><td>Gemini1.5</td><td>natural language description</td><td>10</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>24</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>26</td></tr>
+      <tr><td>Gemini2.0</td><td>graph-structured representation</td><td>10</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>35</td></tr>
+      <tr><td>Gemini2.5</td><td>plain text conversion</td><td>83</td></tr>
+      <tr><td>Gemini2.5</td><td>special character separation</td><td>81</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>75</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>86</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>plain text conversion</td><td>14</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>special character separation</td><td>15</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>graph-structured representation</td><td>13</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>natural language description</td><td>16</td></tr>
+      <tr><td>DeepSeekV3</td><td>plain text conversion</td><td>12</td></tr>
+      <tr><td>DeepSeekV3</td><td>special character separation</td><td>10</td></tr>
+      <tr><td>DeepSeekV3</td><td>graph-structured representation</td><td>14</td></tr>
+      <tr><td>DeepSeekV3</td><td>natural language description</td><td>12</td></tr>
+      <tr><td>Qwen7B</td><td>plain text conversion</td><td>1</td></tr>
+      <tr><td>Qwen7B</td><td>special character separation</td><td>3</td></tr>
+      <tr><td>Qwen7B</td><td>graph-structured representation</td><td>2</td></tr>
+      <tr><td>Qwen7B</td><td>natural language description</td><td>4</td></tr>
+      <tr><td>Qwen14B</td><td>plain text conversion</td><td>11</td></tr>
+      <tr><td>Qwen14B</td><td>special character separation</td><td>11</td></tr>
+      <tr><td>Qwen14B</td><td>graph-structured representation</td><td>9</td></tr>
+      <tr><td>Qwen14B</td><td>natural language description</td><td>8</td></tr>
+      <tr><td>Qwen32B</td><td>plain text conversion</td><td>15</td></tr>
+      <tr><td>Qwen32B</td><td>special character separation</td><td>16</td></tr>
+      <tr><td>Qwen32B</td><td>graph-structured representation</td><td>14</td></tr>
+      <tr><td>Qwen32B</td><td>natural language description</td><td>16</td></tr>
+      <tr><td>Qwen72B</td><td>plain text conversion</td><td>20</td></tr>
+      <tr><td>Qwen72B</td><td>special character separation</td><td>16</td></tr>
+      <tr><td>Qwen72B</td><td>graph-structured representation</td><td>25</td></tr>
+      <tr><td>Qwen72B</td><td>natural language description</td><td>18</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+  <div class="tab-pane " id="D-R4">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>7</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>3</td></tr>
+      <tr><td>GPT3.5turbo</td><td>graph-structured representation</td><td>3</td></tr>
+      <tr><td>GPT3.5turbo</td><td>natural language description</td><td>11</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>70</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>65</td></tr>
+      <tr><td>GPT4.1</td><td>graph-structured representation</td><td>60</td></tr>
+      <tr><td>GPT4.1</td><td>natural language description</td><td>68</td></tr>
+      <tr><td>Gemini1.5</td><td>plain text conversion</td><td>19</td></tr>
+      <tr><td>Gemini1.5</td><td>special character separation</td><td>20</td></tr>
+      <tr><td>Gemini1.5</td><td>graph-structured representation</td><td>12</td></tr>
+      <tr><td>Gemini1.5</td><td>natural language description</td><td>38</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>54</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>62</td></tr>
+      <tr><td>Gemini2.0</td><td>graph-structured representation</td><td>20</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>84</td></tr>
+      <tr><td>Gemini2.5</td><td>plain text conversion</td><td>100</td></tr>
+      <tr><td>Gemini2.5</td><td>special character separation</td><td>98</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>100</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>76</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>plain text conversion</td><td>44</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>special character separation</td><td>47</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>graph-structured representation</td><td>28</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>natural language description</td><td>74</td></tr>
+      <tr><td>DeepSeekV3</td><td>plain text conversion</td><td>72</td></tr>
+      <tr><td>DeepSeekV3</td><td>special character separation</td><td>69</td></tr>
+      <tr><td>DeepSeekV3</td><td>graph-structured representation</td><td>76</td></tr>
+      <tr><td>DeepSeekV3</td><td>natural language description</td><td>88</td></tr>
+      <tr><td>Qwen7B</td><td>natural language description</td><td>12</td></tr>
+      <tr><td>Qwen14B</td><td>plain text conversion</td><td>16</td></tr>
+      <tr><td>Qwen14B</td><td>special character separation</td><td>16</td></tr>
+      <tr><td>Qwen14B</td><td>graph-structured representation</td><td>13</td></tr>
+      <tr><td>Qwen14B</td><td>natural language description</td><td>44</td></tr>
+      <tr><td>Qwen32B</td><td>plain text conversion</td><td>47</td></tr>
+      <tr><td>Qwen32B</td><td>special character separation</td><td>51</td></tr>
+      <tr><td>Qwen32B</td><td>graph-structured representation</td><td>58</td></tr>
+      <tr><td>Qwen32B</td><td>natural language description</td><td>72</td></tr>
+      <tr><td>Qwen72B</td><td>plain text conversion</td><td>41</td></tr>
+      <tr><td>Qwen72B</td><td>special character separation</td><td>46</td></tr>
+      <tr><td>Qwen72B</td><td>graph-structured representation</td><td>31</td></tr>
+      <tr><td>Qwen72B</td><td>natural language description</td><td>74</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="tab-pane" id="D-R5">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>24</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>7</td></tr>
+      <tr><td>GPT3.5turbo</td><td>graph-structured representation</td><td>8</td></tr>
+      <tr><td>GPT3.5turbo</td><td>natural language description</td><td>59</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>84</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>70</td></tr>
+      <tr><td>GPT4.1</td><td>graph-structured representation</td><td>80</td></tr>
+      <tr><td>GPT4.1</td><td>natural language description</td><td>81</td></tr>
+      <tr><td>Gemini1.5</td><td>plain text conversion</td><td>16</td></tr>
+      <tr><td>Gemini1.5</td><td>special character separation</td><td>17</td></tr>
+      <tr><td>Gemini1.5</td><td>graph-structured representation</td><td>1</td></tr>
+      <tr><td>Gemini1.5</td><td>natural language description</td><td>37</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>67</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>70</td></tr>
+      <tr><td>Gemini2.0</td><td>graph-structured representation</td><td>30</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>82</td></tr>
+      <tr><td>Gemini2.5</td><td>plain text conversion</td><td>100</td></tr>
+      <tr><td>Gemini2.5</td><td>special character separation</td><td>100</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>98</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>77</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>plain text conversion</td><td>52</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>special character separation</td><td>56</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>graph-structured representation</td><td>42</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>natural language description</td><td>73</td></tr>
+      <tr><td>DeepSeekV3</td><td>plain text conversion</td><td>90</td></tr>
+      <tr><td>DeepSeekV3</td><td>special character separation</td><td>84</td></tr>
+      <tr><td>DeepSeekV3</td><td>graph-structured representation</td><td>89</td></tr>
+      <tr><td>DeepSeekV3</td><td>natural language description</td><td>96</td></tr>
+	  <tr><td>Qwen7B</td><td>natural language description</td><td>13</td></tr>
+      <tr><td>Qwen14B</td><td>plain text conversion</td><td>4</td></tr>
+      <tr><td>Qwen14B</td><td>special character separation</td><td>6</td></tr>
+      <tr><td>Qwen14B</td><td>graph-structured representation</td><td>2</td></tr>
+      <tr><td>Qwen14B</td><td>natural language description</td><td>35</td></tr>
+      <tr><td>Qwen32B</td><td>plain text conversion</td><td>10</td></tr>
+      <tr><td>Qwen32B</td><td>special character separation</td><td>18</td></tr>
+      <tr><td>Qwen32B</td><td>graph-structured representation</td><td>14</td></tr>
+      <tr><td>Qwen32B</td><td>natural language description</td><td>45</td></tr>
+      <tr><td>Qwen72B</td><td>plain text conversion</td><td>29</td></tr>
+      <tr><td>Qwen72B</td><td>special character separation</td><td>34</td></tr>
+      <tr><td>Qwen72B</td><td>graph-structured representation</td><td>17</td></tr>
+      <tr><td>Qwen72B</td><td>natural language description</td><td>64</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+  <div class="tab-pane" id="K-U1">
+    <table class="display" style="width:100%">
+      <thead><tr><th>Model</th><th>Accuracy</th><th>Explainability</th></tr></thead>
+      <tbody>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>51</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>55</td></tr>
+      <tr><td>Gemini1.5</td><td>natural language description</td><td>51</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>52</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>53</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>51</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>52</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>52</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>plain text conversion</td><td>51</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>graph-structured representation</td><td>52</td></tr>
+      <tr><td>Qwen14B</td><td>special character separation</td><td>52</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+<div class="tab-pane" id="K-R1">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>58.1</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>59.3</td></tr>
+      <tr><td>GPT3.5turbo</td><td>graph-structured representation</td><td>53.1</td></tr>
+      <tr><td>GPT3.5turbo</td><td>natural language description</td><td>50.9</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>55.6</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>53.3</td></tr>
+      <tr><td>GPT4.1</td><td>graph-structured representation</td><td>54</td></tr>
+      <tr><td>GPT4.1</td><td>natural language description</td><td>55</td></tr>
+      <tr><td>Gemini1.5</td><td>plain text conversion</td><td>55.6</td></tr>
+      <tr><td>Gemini1.5</td><td>special character separation</td><td>55.6</td></tr>
+      <tr><td>Gemini1.5</td><td>graph-structured representation</td><td>58.3</td></tr>
+      <tr><td>Gemini1.5</td><td>natural language description</td><td>52.8</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>57.7</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>60</td></tr>
+      <tr><td>Gemini2.0</td><td>graph-structured representation</td><td>61.1</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>56.2</td></tr>
+      <tr><td>Gemini2.5</td><td>plain text conversion</td><td>58.7</td></tr>
+      <tr><td>Gemini2.5</td><td>special character separation</td><td>57.5</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>56.8</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>58.1</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>special character separation</td><td>52.8</td></tr>
+      <tr><td>DeepSeekV3</td><td>plain text conversion</td><td>52.8</td></tr>
+      <tr><td>DeepSeekV3</td><td>special character separation</td><td>55.6</td></tr>
+      <tr><td>DeepSeekV3</td><td>graph-structured representation</td><td>55.6</td></tr>
+      <tr><td>DeepSeekV3</td><td>natural language description</td><td>52.8</td></tr>
+      <tr><td>Qwen32B</td><td>plain text conversion</td><td>58.3</td></tr>
+      <tr><td>Qwen32B</td><td>special character separation</td><td>55.6</td></tr>
+      <tr><td>Qwen32B</td><td>graph-structured representation</td><td>58.3</td></tr>
+      <tr><td>Qwen32B</td><td>natural language description</td><td>55.6</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="tab-pane" id="K-R2">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>55.4</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>52.2</td></tr>
+      <tr><td>GPT3.5turbo</td><td>graph-structured representation</td><td>53.1</td></tr>
+      <tr><td>GPT3.5turbo</td><td>natural language description</td><td>57.7</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>53.2</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>54.5</td></tr>
+      <tr><td>GPT4.1</td><td>graph-structured representation</td><td>50.7</td></tr>
+      <tr><td>GPT4.1</td><td>natural language description</td><td>54.9</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>56.2</td></tr>
+      <tr><td>Gemini2.0</td><td>special character separation</td><td>54.1</td></tr>
+      <tr><td>Gemini2.0</td><td>graph-structured representation</td><td>53.1</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>54.1</td></tr>
+      <tr><td>Gemini2.5</td><td>plain text conversion</td><td>54.1</td></tr>
+      <tr><td>Gemini2.5</td><td>special character separation</td><td>55.1</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>54.1</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>53.1</td></tr>
+      <tr><td>DeepSeekV2.5</td><td>natural language description</td><td>54.1</td></tr>
+      <tr><td>DeepSeekV3</td><td>natural language description</td><td>51</td></tr>
+      <tr><td>Qwen32B</td><td>plain text conversion</td><td>51</td></tr>
+      <tr><td>Qwen32B</td><td>special character separation</td><td>51</td></tr>
+      <tr><td>Qwen32B</td><td>graph-structured representation</td><td>51</td></tr>
+      <tr><td>Qwen32B</td><td>natural language description</td><td>51</td></tr>
+    </tbody>
+  </table>
+</div>
+
+ <div class="tab-pane" id="K-R3">
+  <table class="display" style="width:100%">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Format</th>
+        <th>Performance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>GPT3.5turbo</td><td>plain text conversion</td><td>52.9</td></tr>
+      <tr><td>GPT3.5turbo</td><td>special character separation</td><td>60.2</td></tr>
+      <tr><td>GPT4.1</td><td>plain text conversion</td><td>51</td></tr>
+      <tr><td>GPT4.1</td><td>special character separation</td><td>55.6</td></tr>
+      <tr><td>Gemini2.0</td><td>plain text conversion</td><td>51.6</td></tr>
+      <tr><td>Gemini2.0</td><td>natural language description</td><td>52.2</td></tr>
+      <tr><td>Gemini2.5</td><td>graph-structured representation</td><td>51.6</td></tr>
+      <tr><td>Gemini2.5</td><td>natural language description</td><td>51</td></tr>
+      <tr><td>DeepSeekV3</td><td>plain text conversion</td><td>56.4</td></tr>
+      <tr><td>Qwen72B</td><td>plain text conversion</td><td>52.2</td></tr>
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+  <div class="white-box" style="width: 50%; margin: 40px auto 0 auto;">
+
+  <div class="abstract-title">Method Leaderboard: Performance Gains Across Structured Tasks</div>
+
+  <div style="text-align: right; margin-bottom: 15px;">
+    <button id="toggleMode" class="toggle-source-btn">To Knowledge-Driven</button>
+  </div>
+
+  <div id="methodContent" style="transition: all 0.3s ease;">
+
+    <!-- 📊 Data-Driven Content -->
+    <div id="dataDrivenContent">
+      <div style="display: flex; gap: 20px;">
+        <!-- PDF 图区域 -->
+        <div style="flex: 7;">
+          <embed src="Gemini-2.0_general_D_tasks.pdf" type="application/pdf" width="100%" height="500px" />
+        </div>
+
+        <!-- 图例区域 -->
+        <div style="flex: 3; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
+          <strong>Legend (Non-Medical Methods):</strong><br>
+          <span style="color: #E41A1C;">■ C.L.E.A.R</span><br>
+          <span style="color: #FF7F00;">■ TaT</span><br>
+          <span style="color: #4DAF4A;">■ TableMaster</span><br>
+          <span style="color: #17BECF;">■ TIDE</span><br>
+          <span style="color: #377EB8;">■ E⁵</span><br>
+          <span style="color: #984EA3;">■ GraphOTTER</span><br>
+          <span style="color: #F781BF;">■ H-STAR</span><br>
+          <span style="color: #A65628;">■ Table-R1</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🧬 Knowledge-Driven Content -->
+    <div id="knowledgeDrivenContent" style="display: none;">
+      <div style="display: flex; gap: 20px;">
+        <!-- PDF 图区域 -->
+        <div style="flex: 7;">
+          <embed src="Gemini-2.0_medical_K_tasks.pdf" type="application/pdf" width="100%" height="500px" />
+        </div>
+
+        <!-- 图例区域 -->
+        <div style="flex: 3; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
+          <strong>Legend (Medical Methods):</strong><br>
+          <span style="color: #228B22;">■ LLM4Healthcare</span><br>
+          <span style="color: #DAA520;">■ DeLLiriuM</span><br>
+          <span style="color: #6A5ACD;">■ EnsembleLLM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+	
+</div>
+
+<script>
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabPanes = document.querySelectorAll('.tab-pane');
+  const tables = {};
+
+  $(document).ready(function () {
+    // 初始化所有 DataTables 表格并存储引用
+    $('table.display').each(function () {
+      const id = $(this).closest('.tab-pane').attr('id');
+      tables[id] = $(this).DataTable({
+        scrollX: true
+      });
+    });
+  });
+
+  // 切换 tab，并触发表格重绘
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabPanes.forEach(pane => pane.classList.remove('active'));
+
+      const targetId = button.dataset.target;
+      button.classList.add('active');
+      document.getElementById(targetId).classList.add('active');
+
+      // ⚠️ 手动触发 DataTable 列宽重绘，解决初始错位问题
+      if (tables[targetId]) {
+        tables[targetId].columns.adjust().draw();
       }
-    }
+    });
+  });
 
-    function showTask(task) {
-      currentTask = task;
-      document.getElementById('leaderboard').innerHTML =
-        `<p><strong>${task}</strong> results on <strong>${currentDataset}</strong> dataset will be shown here.</p>` +
-        `<p style='color: #aaa'>(Table placeholder for ${task} leaderboard)</p>`;
+
+
+
+  document.getElementById('toggleMode').addEventListener('click', function () {
+    const dataDiv = document.getElementById('dataDrivenContent');
+    const knowledgeDiv = document.getElementById('knowledgeDrivenContent');
+    const button = document.getElementById('toggleMode');
+
+    if (dataDiv.style.display !== 'none') {
+      dataDiv.style.opacity = 1;
+      dataDiv.style.transition = 'opacity 0.3s ease';
+      dataDiv.style.opacity = 0;
+      setTimeout(() => {
+        dataDiv.style.display = 'none';
+        knowledgeDiv.style.display = 'flex';
+        knowledgeDiv.style.opacity = 0;
+        knowledgeDiv.style.transition = 'opacity 0.3s ease';
+        requestAnimationFrame(() => {
+          knowledgeDiv.style.opacity = 1;
+        });
+        button.textContent = 'To Data-Driven';
+      }, 300);
+    } else {
+      knowledgeDiv.style.opacity = 1;
+      knowledgeDiv.style.transition = 'opacity 0.3s ease';
+      knowledgeDiv.style.opacity = 0;
+      setTimeout(() => {
+        knowledgeDiv.style.display = 'none';
+        dataDiv.style.display = 'flex';
+        dataDiv.style.opacity = 0;
+        dataDiv.style.transition = 'opacity 0.3s ease';
+        requestAnimationFrame(() => {
+          dataDiv.style.opacity = 1;
+        });
+        button.textContent = 'To Knowledge-Driven';
+      }, 300);
     }
-  </script>
+  });
+
+
+
+  document.getElementById('toggleMode').addEventListener('click', function () {
+    const dataDiv = document.getElementById('dataDrivenContent');
+    const knowledgeDiv = document.getElementById('knowledgeDrivenContent');
+    const button = document.getElementById('toggleMode');
+
+    if (dataDiv.style.display !== 'none') {
+      dataDiv.style.opacity = 1;
+      dataDiv.style.transition = 'opacity 0.3s ease';
+      dataDiv.style.opacity = 0;
+      setTimeout(() => {
+        dataDiv.style.display = 'none';
+        knowledgeDiv.style.display = 'flex';
+        knowledgeDiv.style.opacity = 0;
+        knowledgeDiv.style.transition = 'opacity 0.3s ease';
+        requestAnimationFrame(() => {
+          knowledgeDiv.style.opacity = 1;
+        });
+        button.textContent = 'To Data-Driven';
+      }, 300);
+    } else {
+      knowledgeDiv.style.opacity = 1;
+      knowledgeDiv.style.transition = 'opacity 0.3s ease';
+      knowledgeDiv.style.opacity = 0;
+      setTimeout(() => {
+        knowledgeDiv.style.display = 'none';
+        dataDiv.style.display = 'flex';
+        dataDiv.style.opacity = 0;
+        dataDiv.style.transition = 'opacity 0.3s ease';
+        requestAnimationFrame(() => {
+          dataDiv.style.opacity = 1;
+        });
+        button.textContent = 'To Knowledge-Driven';
+      }, 300);
+    }
+  });
+</script>
+
 </body>
 </html>
