@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <title>EHRStruct Overview</title>
   <style>
    body {
-  background-color: #f2f2f2; /* 整体背景为淡灰色 */
+  background-color: #ffffff; /* 整体背景为淡灰色 */
   color: #000000; /* 默认黑色字体 */
-  font-family: Arial, sans-serif;
+  font-family: 'Fredoka', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -41,20 +42,23 @@
 /* ✅ 模块内容宽度为 50% */
 .content-box-50 {
   width: 50%;
-  background-color: #ffffff;
+  background-color: #fffce6;  
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e0e0f0;
 }
 
 /* ✅ 模块内容宽度为 70%（如 Method Leaderboard） */
 .content-box-70 {
   width: 70%;
-  background-color: #ffffff;
+  background-color: #fffce6;  
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e0e0f0;
 }
+
 
 .image-container img {
   width: 100%;
@@ -150,6 +154,79 @@
   background-color: #eaeaea;
 }
 
+
+/* 🍯 表格整体风格（圆角 + 阴影） */
+table.display {
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* 🍋 表头样式：淡柠檬黄 */
+table.display thead {
+  background-color: #ffffff;
+}
+
+table.display thead th {
+  padding: 12px;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 1px solid #e0dcbf;
+}
+
+/* 🧁 单元格样式 */
+table.display tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0ead2;
+  color: #444;
+}
+
+/* 🌼 隔行变色（柔和奶黄调） */
+table.display tbody tr:nth-child(odd) {
+  background-color: #fff8e1;
+}
+
+table.display tbody tr:nth-child(even) {
+  background-color: #fffdf7;
+}
+
+/* 🍮 鼠标悬浮高亮：淡焦糖感 */
+table.display tbody tr:hover {
+  background-color: #fff0c2;
+  transition: background-color 0.2s ease;
+}
+
+/* ✅ 外框圆角兼容 */
+.dataTables_wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 🟣 卡通风切换按钮样式 */
+.toggle-source-btn {
+  background-color: #fdd76e;           /* 柔和卡通黄 */
+  color: #333333;
+  border: 2px solid #f0c542;           /* 更深黄的边框 */
+  border-radius: 20px;                 /* 圆角按钮 */
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-source-btn:hover {
+  background-color: #ffeaa7;           /* 鼠标悬浮变更柔色 */
+  border-color: #f4d03f;
+  transform: scale(1.05);              /* 微微放大 */
+}
+
   </style>
 <!-- ✅ DataTables 样式 -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -162,9 +239,10 @@
 <body>
   <div class="container">
    <!-- ✅ 页面标题 -->
-<div class="title">
+<div class="title" style="max-width: 50%; margin: 40px auto 40px auto;">
   <span class="highlight">EHRStruct</span>: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks
 </div>
+
 
 <!-- ✅ 模块容器（图 + overview），内容宽度为 50% -->
 <div class="module-wrapper">
@@ -237,11 +315,26 @@
       <div id="dataDrivenContent">
         <div style="display: flex; gap: 20px;">
           <!-- 三张图横排展示 -->
-          <div style="flex: 8; display: flex; gap: 10px;">
-            <img src="Gemini-1.5_general_D_tasks.png" alt="Gemini 1.5 Data" style="width: 33%; border-radius: 4px;" />
-            <img src="Gemini-2.0_general_D_tasks.png" alt="Gemini 2.0 Data" style="width: 33%; border-radius: 4px;" />
-            <img src="Gemini-2.5_general_D_tasks.png" alt="Gemini 2.5 Data" style="width: 33%; border-radius: 4px;" />
-          </div>
+<div style="flex: 8; display: flex; gap: 10px; justify-content: space-between;">
+  <!-- Gemini 1.5 -->
+  <div style="width: 33%; text-align: center;">
+    <img src="Gemini-1.5_general_D_tasks.png" alt="Gemini 1.5 Data" style="width: 100%; border-radius: 4px;" />
+    <div style="margin-top: 8px; font-size: 14px; color: #555;">Gemini 1.5</div>
+  </div>
+
+  <!-- Gemini 2.0 -->
+  <div style="width: 33%; text-align: center;">
+    <img src="Gemini-2.0_general_D_tasks.png" alt="Gemini 2.0 Data" style="width: 100%; border-radius: 4px;" />
+    <div style="margin-top: 8px; font-size: 14px; color: #555;">Gemini 2.0</div>
+  </div>
+
+  <!-- Gemini 2.5 -->
+  <div style="width: 33%; text-align: center;">
+    <img src="Gemini-2.5_general_D_tasks.png" alt="Gemini 2.5 Data" style="width: 100%; border-radius: 4px;" />
+    <div style="margin-top: 8px; font-size: 14px; color: #555;">Gemini 2.5</div>
+  </div>
+</div>
+
           <!-- 图例 -->
           <div style="flex: 2; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
             <strong>Legend:</strong><br>
@@ -261,11 +354,26 @@
       <div id="knowledgeDrivenContent" style="display: none;">
         <div style="display: flex; gap: 20px;">
           <!-- 三张图横排展示 -->
-          <div style="flex: 8; display: flex; gap: 10px;">
-            <img src="Gemini-1.5_medical_K_tasks.png" alt="Gemini 1.5 Knowledge" style="width: 33%; border-radius: 4px;" />
-            <img src="Gemini-2.0_medical_K_tasks.png" alt="Gemini 2.0 Knowledge" style="width: 33%; border-radius: 4px;" />
-            <img src="Gemini-2.5_medical_K_tasks.png" alt="Gemini 2.5 Knowledge" style="width: 33%; border-radius: 4px;" />
-          </div>
+<div style="flex: 8; display: flex; gap: 10px; justify-content: space-between;">
+  <!-- Gemini 1.5 -->
+  <div style="width: 33%; text-align: center;">
+    <img src="Gemini-1.5_medical_K_tasks.png" alt="Gemini 1.5 Knowledge" style="width: 100%; border-radius: 4px;" />
+    <div style="margin-top: 8px; font-size: 14px; color: #555;">Gemini 1.5</div>
+  </div>
+
+  <!-- Gemini 2.0 -->
+  <div style="width: 33%; text-align: center;">
+    <img src="Gemini-2.0_medical_K_tasks.png" alt="Gemini 2.0 Knowledge" style="width: 100%; border-radius: 4px;" />
+    <div style="margin-top: 8px; font-size: 14px; color: #555;">Gemini 2.0</div>
+  </div>
+
+  <!-- Gemini 2.5 -->
+  <div style="width: 33%; text-align: center;">
+    <img src="Gemini-2.5_medical_K_tasks.png" alt="Gemini 2.5 Knowledge" style="width: 100%; border-radius: 4px;" />
+    <div style="margin-top: 8px; font-size: 14px; color: #555;">Gemini 2.5</div>
+  </div>
+</div>
+
           <!-- 图例 -->
           <div style="flex: 2; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
             <strong>Legend:</strong><br>
