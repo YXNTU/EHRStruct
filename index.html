@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <title>EHRStruct Overview</title>
   <style>
-    body {
-      background-color: #f2f2f2; /* 整体背景为淡灰色 */
-      color: #000000; /* 默认黑色字体 */
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+   body {
+  background-color: #f2f2f2; /* 整体背景为淡灰色 */
+  color: #000000; /* 默认黑色字体 */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
 .container {
   max-width: none;
@@ -19,125 +19,125 @@
   margin: 0 auto;
 }
 
+.title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
 
-    .title {
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 30px;
-    }
+.title .highlight {
+  color: #1E90FF; /* EHRStruct 蓝色高亮 */
+}
 
-    .title .highlight {
-      color: #1E90FF; /* EHRStruct 蓝色高亮 */
-    }
+/* ✅ 所有模块的外层容器，宽度 100%，内部居中 */
+.module-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
 
-    .white-box {
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      margin-bottom: 40px;
-    }
+/* ✅ 模块内容宽度为 50% */
+.content-box-50 {
+  width: 50%;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-    .image-container img {
-      width: 100%;
-      max-width: 800px;
-      margin: 30px auto;
-      display: block;
-    }
+/* ✅ 模块内容宽度为 70%（如 Method Leaderboard） */
+.content-box-70 {
+  width: 70%;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-    .overview-text {
-      font-size: 16px;
-      line-height: 1.6;
-      text-align: justify;
-    }
+.image-container img {
+  width: 100%;
+  max-width: 800px;
+  margin: 30px auto;
+  display: block;
+}
 
-    .overview-text strong {
-      font-weight: bold;
-    }
+.overview-text {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+}
 
-    .abstract-title {
-      text-align: center;
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
+.overview-text strong {
+  font-weight: bold;
+}
 
-    .abstract-box {
-      background-color: #ffffff;
-      padding: 20px 25px;
-      border-radius: 6px;
-      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
-    }
+.abstract-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 40px auto 20px auto;
+}
 
-    .abstract-text {
-      font-size: 17px;
-      line-height: 1.7;
-      text-align: justify;
-    }
-	 .tab-bar {
-    display: flex;
-    gap: 10px;
-    padding: 10px 0 0;
-    border-bottom: 2px solid #e0e0e0;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
+/* ✅ 抽象模块内容也统一为外层 wrapper + 内层 box 的形式 */
+.abstract-text {
+  font-size: 17px;
+  line-height: 1.7;
+  text-align: justify;
+}
 
-  .tab-button {
-    padding: 6px 14px;
-    border: none;
-    background: none;
-    font-size: 15px;
-    cursor: pointer;
-    color: #333;
-    border-radius: 8px 8px 0 0;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
-    margin-bottom: -1px; /* ✨ 关键：让选中按钮底部和内容贴合 */
-  }
+.tab-bar {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0 0;
+  border-bottom: 2px solid #e0e0e0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
 
-  .tab-button.active {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-bottom: 1px solid #ffffff; /* ✨ 让按钮底部无缝接到内容区域 */
-    font-weight: bold;
-    color: #000;
-    z-index: 2;
-  }
+.tab-button {
+  padding: 6px 14px;
+  border: none;
+  background: none;
+  font-size: 15px;
+  cursor: pointer;
+  color: #333;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  margin-bottom: -1px; /* 关键：让选中按钮底部和内容贴合 */
+}
 
-  .tab-container {
-    border: 1px solid #ccc;
-    border-top: none;
-    background-color: #ffffff;
-    border-radius: 0 0 6px 6px;
-    padding: 20px;
-  }
+.tab-button.active {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #ffffff;
+  font-weight: bold;
+  color: #000;
+  z-index: 2;
+}
 
-  .tab-pane {
-    display: none;
-  }
+.tab-container {
+  border: 1px solid #ccc;
+  border-top: none;
+  background-color: #ffffff;
+  border-radius: 0 0 6px 6px;
+  padding: 20px;
+}
 
-  .tab-pane.active {
-    display: block;
-  }
+.tab-pane {
+  display: none;
+}
 
-  .toggle-source-btn {
-    margin-top: 15px;
-    margin-bottom: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 6px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-  }
+.tab-pane.active {
+  display: block;
+}
 
-  .toggle-source-btn:hover {
-    background-color: #e0e0e0;
-  }
-	  
-	  .toggle-source-btn {
+/* 切换按钮样式 */
+.toggle-source-btn {
+  margin-top: 15px;
+  margin-bottom: 20px;
   background-color: #f8f8f8;
   border: 1px solid #ccc;
   padding: 6px 12px;
@@ -145,6 +145,7 @@
   font-size: 14px;
   cursor: pointer;
 }
+
 .toggle-source-btn:hover {
   background-color: #eaeaea;
 }
@@ -160,74 +161,153 @@
 </head>
 <body>
   <div class="container">
-    <div class="title">
-      <span class="highlight">EHRStruct</span>: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks
+   <!-- ✅ 页面标题 -->
+<div class="title">
+  <span class="highlight">EHRStruct</span>: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks
+</div>
+
+<!-- ✅ 模块容器（图 + overview），内容宽度为 50% -->
+<div class="module-wrapper">
+  <div class="content-box-50">
+    <div class="image-container">
+      <img src="Overview%20of%20EHRStruct.png" alt="Overview of EHRStruct">
     </div>
 
-    <div class="white-box">
-      <div class="image-container">
-        <img src="Overview%20of%20EHRStruct.png" alt="Overview of EHRStruct">
-      </div>
+    <div class="overview-text">
+      <strong>EHRStruct</strong> comprises four key components that together define a comprehensive benchmark for evaluating LLMs on structured EHR data. 
 
-      <div class="overview-text">
-        <strong>EHRStruct</strong> comprises four key components that together define a comprehensive benchmark for evaluating LLMs on structured EHR data. 
+      <strong>(1) Task Synthesis</strong> identifies clinically relevant reasoning needs through a collaboration between CS researchers and medical experts, combining prior research distillation with real-world clinical priorities. 
 
-        <strong>(1) Task Synthesis</strong> identifies clinically relevant reasoning needs through a collaboration between CS researchers and medical experts, combining prior research distillation with real-world clinical priorities. 
+      <strong>(2) Task Taxonomy Construction</strong> organizes tasks along three dimensions—clinical scenario (data- vs. knowledge-driven), cognitive level (understanding vs. reasoning), and functional type—forming a principled evaluation space. 
 
-        <strong>(2) Task Taxonomy Construction</strong> organizes tasks along three dimensions—clinical scenario (data- vs. knowledge-driven), cognitive level (understanding vs. reasoning), and functional type—forming a principled evaluation space. 
+      <strong>(3) Task-Specific Sample Extraction</strong> selects representative structured tables from both synthetic and real-world EHR datasets (Synthea and eICU), and generates 2,200 high-quality question–answer samples through a validated annotation pipeline. 
 
-        <strong>(3) Task-Specific Sample Extraction</strong> selects representative structured tables from both synthetic and real-world EHR datasets (Synthea and eICU), and generates 2,200 high-quality question–answer samples through a validated annotation pipeline. 
-
-        <strong>(4) Model Evaluation Pipeline</strong> transforms structured tables into multiple input formats, applies prompting, enhancement, or fine-tuning techniques to 20 representative LLMs, and evaluates outputs using automated scoring and leaderboard comparison, including our proposed SEMaster method.
-      </div>
-    </div>
-
-    <div class="abstract-title">Abstract</div>
-    <div class="abstract-box">
-      <div class="abstract-text">
-        Structured Electronic Health Record (EHR) data stores patient information in relational tables and plays a central role in clinical decision-making. 
-
-        Recent advances have explored the use of large language models (LLMs) to process such data, showing promise across various clinical tasks.
-
-        However, the absence of standardized evaluation frameworks and clearly defined tasks makes it difficult to systematically assess and compare LLM performance on structured EHR data.
-
-        To address these evaluation challenges, we introduce EHRStruct, a benchmark specifically designed to evaluate LLMs on structured EHR tasks.
-
-        EHRStruct defines 11 representative tasks spanning diverse clinical needs and includes 2,200 task-specific evaluation samples derived from two widely used EHR datasets.
-
-        We use EHRStruct to evaluate 20 advanced and representative LLMs, covering both general and medical models.
-
-        We further analyze key factors influencing model performance, including input formats, few-shot generalisation, and finetuning strategies, and compare results with 11 state-of-the-art LLM-based enhancement methods for structured data reasoning. 
-
-        Our results indicate that many structured EHR tasks place high demands on the understanding and reasoning capabilities of LLMs.
-
-        In response, we propose SEMaster, a code-augmented method that achieves state-of-the-art performance and offers practical insights to guide future research.
-      </div>
+      <strong>(4) Model Evaluation Pipeline</strong> transforms structured tables into multiple input formats, applies prompting, enhancement, or fine-tuning techniques to 20 representative LLMs, and evaluates outputs using automated scoring and leaderboard comparison, including our proposed SEMaster method.
     </div>
   </div>
+</div>
 
-<div style="width: 50%; margin: 0 auto;">
+
+<!-- ✅ 标题单独居中显示 -->
+<div class="abstract-title">Abstract</div>
+
+<!-- ✅ 白色内容框居中显示，仅包含正文 -->
+<div class="module-wrapper">
+  <div class="content-box-50">
+    <div class="abstract-text">
+      Structured Electronic Health Record (EHR) data stores patient information in relational tables and plays a central role in clinical decision-making. 
+
+      Recent advances have explored the use of large language models (LLMs) to process such data, showing promise across various clinical tasks.
+
+      However, the absence of standardized evaluation frameworks and clearly defined tasks makes it difficult to systematically assess and compare LLM performance on structured EHR data.
+
+      To address these evaluation challenges, we introduce EHRStruct, a benchmark specifically designed to evaluate LLMs on structured EHR tasks.
+
+      EHRStruct defines 11 representative tasks spanning diverse clinical needs and includes 2,200 task-specific evaluation samples derived from two widely used EHR datasets.
+
+      We use EHRStruct to evaluate 20 advanced and representative LLMs, covering both general and medical models.
+
+      We further analyze key factors influencing model performance, including input formats, few-shot generalisation, and finetuning strategies, and compare results with 11 state-of-the-art LLM-based enhancement methods for structured data reasoning. 
+
+      Our results indicate that many structured EHR tasks place high demands on the understanding and reasoning capabilities of LLMs.
+
+      In response, we propose SEMaster, a code-augmented method that achieves state-of-the-art performance and offers practical insights to guide future research.
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- ✅ 标题：单独在外部，宽度 70%，居中 -->
+<div class="abstract-title">Method Leaderboard</div>
+<!-- ✅ 内容模块：统一模块结构，宽度 70% 白色盒子 -->
+<div class="module-wrapper">
+  <div class="content-box-70">
+
+    <!-- 🔘 切换按钮 -->
+    <div style="text-align: right; margin-bottom: 15px;">
+      <button id="toggleMode" class="toggle-source-btn">To Knowledge-Driven</button>
+    </div>
+
+    <!-- 🔁 切换内容区域 -->
+    <div id="methodContent" style="transition: all 0.3s ease;">
+
+      <!-- 📊 Data-Driven -->
+      <div id="dataDrivenContent">
+        <div style="display: flex; gap: 20px;">
+          <!-- 三张图横排展示 -->
+          <div style="flex: 8; display: flex; gap: 10px;">
+            <img src="Gemini-1.5_general_D_tasks.png" alt="Gemini 1.5 Data" style="width: 33%; border-radius: 4px;" />
+            <img src="Gemini-2.0_general_D_tasks.png" alt="Gemini 2.0 Data" style="width: 33%; border-radius: 4px;" />
+            <img src="Gemini-2.5_general_D_tasks.png" alt="Gemini 2.5 Data" style="width: 33%; border-radius: 4px;" />
+          </div>
+          <!-- 图例 -->
+          <div style="flex: 2; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
+            <strong>Legend:</strong><br>
+            <span style="color: #E41A1C;">■ C.L.E.A.R</span><br>
+            <span style="color: #FF7F00;">■ TaT</span><br>
+            <span style="color: #4DAF4A;">■ TableMaster</span><br>
+            <span style="color: #17BECF;">■ TIDE</span><br>
+            <span style="color: #377EB8;">■ E⁵</span><br>
+            <span style="color: #984EA3;">■ GraphOTTER</span><br>
+            <span style="color: #F781BF;">■ H-STAR</span><br>
+            <span style="color: #A65628;">■ Table-R1</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🧬 Knowledge-Driven -->
+      <div id="knowledgeDrivenContent" style="display: none;">
+        <div style="display: flex; gap: 20px;">
+          <!-- 三张图横排展示 -->
+          <div style="flex: 8; display: flex; gap: 10px;">
+            <img src="Gemini-1.5_medical_K_tasks.png" alt="Gemini 1.5 Knowledge" style="width: 33%; border-radius: 4px;" />
+            <img src="Gemini-2.0_medical_K_tasks.png" alt="Gemini 2.0 Knowledge" style="width: 33%; border-radius: 4px;" />
+            <img src="Gemini-2.5_medical_K_tasks.png" alt="Gemini 2.5 Knowledge" style="width: 33%; border-radius: 4px;" />
+          </div>
+          <!-- 图例 -->
+          <div style="flex: 2; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
+            <strong>Legend:</strong><br>
+            <span style="color: #228B22;">■ LLM4Healthcare</span><br>
+            <span style="color: #DAA520;">■ DeLLiriuM</span><br>
+            <span style="color: #6A5ACD;">■ EnsembleLLM</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
 	
-	  <div class="abstract-title"> Model  Leaderboard
-  </div>
-<div class="abstract-box" style="margin-top: 40px;">
-  <div style="text-align: center; font-size: 16px; font-style: italic; margin-bottom: 20px;">
-    Which model performs best on structured EHR tasks?
-  </div>
+<!-- ✅ 标题单独居中显示在外部 -->
+<div class="abstract-title">Model Leaderboard</div>
 
-  <div class="abstract-text">
-    <strong>Overview of the 11 structured tasks in EHRStruct</strong>, categorized by scenario (Data-Driven vs. Knowledge-Driven) and cognitive level (Understanding vs. Reasoning).  
-    <br>
-    <strong>Data-Driven tasks</strong> include: <br>
-    <strong>D-U1/U2</strong>: data filtering based on field conditions; <br>
-    <strong>D-R1/R2/R3</strong>: value aggregation including count, average, and sum; <br>
-    <strong>D-R4/R5</strong>: arithmetic reasoning over numeric field trends. <br>
-    <strong>Knowledge-Driven tasks</strong> include: <br>
-    <strong>K-U1</strong>: clinical code identification; <br>
-    <strong>K-R1</strong>: mortality prediction; <br>
-    <strong>K-R2</strong>: disease prediction based on clinical profiles; <br>
-    <strong>K-R3</strong>: medication recommendation tailored to patient characteristics.
-  </div>
+<!-- ✅ 内容放入白色盒子，宽度 50%，位于模块容器内 -->
+<div class="module-wrapper">
+  <div class="content-box-50">
+    <div style="text-align: center; font-size: 16px; font-style: italic; margin-bottom: 20px;">
+      Which model performs best on structured EHR tasks?
+    </div>
+
+    <div class="abstract-text">
+      <strong>Overview of the 11 structured tasks in EHRStruct</strong>, categorized by scenario (Data-Driven vs. Knowledge-Driven) and cognitive level (Understanding vs. Reasoning).  
+      <br>
+      <strong>Data-Driven tasks</strong> include: <br>
+      <strong>D-U1/U2</strong>: data filtering based on field conditions; <br>
+      <strong>D-R1/R2/R3</strong>: value aggregation including count, average, and sum; <br>
+      <strong>D-R4/R5</strong>: arithmetic reasoning over numeric field trends. <br>
+      <strong>Knowledge-Driven tasks</strong> include: <br>
+      <strong>K-U1</strong>: clinical code identification; <br>
+      <strong>K-R1</strong>: mortality prediction; <br>
+      <strong>K-R2</strong>: disease prediction based on clinical profiles; <br>
+      <strong>K-R3</strong>: medication recommendation tailored to patient characteristics.
+    </div>
+
+
 	
 <!-- 📦 外层容器包住按钮、tab、表格 -->
 <div class="leaderboard-wrapper" style="margin-top: 30px;">
@@ -778,8 +858,6 @@
   </table>
 </div>
 </div>
-</div>
-</div>
 
 
 
@@ -787,67 +865,6 @@
 
 
 
-<!-- 📌 外层间距和标题 -->
-<div style="width: 70%; margin: 80px auto 20px auto; text-align: center;">
-  <div class="abstract-title">Method Leaderboard</div>
-</div>
-
-<!-- 📦 白色内容盒子 -->
-<div class="white-box" style="width: 90%; margin: 0 auto;">
-
-  <!-- 🔘 切换按钮 -->
-  <div style="text-align: right; margin-bottom: 15px;">
-    <button id="toggleMode" class="toggle-source-btn">To Knowledge-Driven</button>
-  </div>
-
-  <!-- 🔁 切换内容区域 -->
-  <div id="methodContent" style="transition: all 0.3s ease;">
-
-    <!-- 📊 Data-Driven -->
-    <div id="dataDrivenContent">
-      <div style="display: flex; gap: 20px;">
-        <!-- 三张图横排展示 -->
-        <div style="flex: 7; display: flex; gap: 10px;">
-          <img src="Gemini-1.5_general_D_tasks.png" alt="Gemini 1.5 Data" style="width: 33%; border-radius: 4px;" />
-          <img src="Gemini-2.0_general_D_tasks.png" alt="Gemini 2.0 Data" style="width: 33%; border-radius: 4px;" />
-          <img src="Gemini-2.5_general_D_tasks.png" alt="Gemini 2.5 Data" style="width: 33%; border-radius: 4px;" />
-        </div>
-        <!-- 图例 -->
-        <div style="flex: 3; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
-          <strong>Legend:</strong><br>
-          <span style="color: #E41A1C;">■ C.L.E.A.R</span><br>
-          <span style="color: #FF7F00;">■ TaT</span><br>
-          <span style="color: #4DAF4A;">■ TableMaster</span><br>
-          <span style="color: #17BECF;">■ TIDE</span><br>
-          <span style="color: #377EB8;">■ E⁵</span><br>
-          <span style="color: #984EA3;">■ GraphOTTER</span><br>
-          <span style="color: #F781BF;">■ H-STAR</span><br>
-          <span style="color: #A65628;">■ Table-R1</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 🧬 Knowledge-Driven -->
-    <div id="knowledgeDrivenContent" style="display: none;">
-      <div style="display: flex; gap: 20px;">
-        <!-- 三张图横排展示 -->
-        <div style="flex: 7; display: flex; gap: 10px;">
-          <img src="Gemini-1.5_medical_K_tasks.png" alt="Gemini 1.5 Knowledge" style="width: 33%; border-radius: 4px;" />
-          <img src="Gemini-2.0_medical_K_tasks.png" alt="Gemini 2.0 Knowledge" style="width: 33%; border-radius: 4px;" />
-          <img src="Gemini-2.5_medical_K_tasks.png" alt="Gemini 2.5 Knowledge" style="width: 33%; border-radius: 4px;" />
-        </div>
-        <!-- 图例 -->
-        <div style="flex: 3; font-size: 14px; line-height: 1.8; background: #f9f9f9; padding: 15px; border-radius: 6px;">
-          <strong>Legend:</strong><br>
-          <span style="color: #228B22;">■ LLM4Healthcare</span><br>
-          <span style="color: #DAA520;">■ DeLLiriuM</span><br>
-          <span style="color: #6A5ACD;">■ EnsembleLLM</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
 
