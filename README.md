@@ -59,7 +59,7 @@ EHRStruct/
 │   ├── medications/        # sample_001.csv–sample_100.csv; query_answer_K-R3.csv
 │   └── snomed/             # sample_001.csv–sample_100.csv; query_answer_K-U1.csv
 │
-├── EHRMaster/              # SEMaster implementation
+├── EHRMaster/              # EHRMaster implementation
 │   ├── __init__.py
 │   ├── LLMCaller.py
 │   └── run.py
@@ -115,9 +115,9 @@ python run.py --llm Qwen72B --task aggregation --type txt --k 0
 > 🔴 **Note:** For evaluating Gemini and GPT models, please refer to the corresponding API call examples in `Gemini/LLMCaller.py` and `Openai/LLMCaller.py`.
 
 
-### SEMaster Evaluation
+### EHRMaster Evaluation
 
-Our work shows that SEMaster performs particularly well on **Data-Driven tasks**. We therefore release the evaluation setup for these tasks.
+Our work shows that EHRMaster performs particularly well on **Data-Driven tasks**. We therefore release the evaluation setup for these tasks.
 
 ```bash
 cd EHRMaster
