@@ -140,7 +140,7 @@ If you find EHRStruct helpful in your research, please cite our paper:
   journal={arXiv preprint arXiv:2511.08206},
   year={2025}
 }
-
+```
 
 ### License
 EHRStruct is released under the MIT License. Our codes must only be used for the purpose of research.
