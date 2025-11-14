@@ -129,6 +129,16 @@ python run.py --llm Qwen72B --task D-U1
 # Results will be saved in EHRMaster/output/
 ```
 
+### Citation
+If you find EHRStruct helpful in your research, please cite our paper:
+
+@article{yang2025ehrstruct,
+  title={EHRStruct: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks},
+  author={Yang, Xiao and Zhao, Xuejiao and Shen, Zhiqi},
+  journal={arXiv preprint arXiv:2511.08206},
+  year={2025}
+}
+
 
 ### License
 EHRStruct is released under the MIT License. Our codes must only be used for the purpose of research.
