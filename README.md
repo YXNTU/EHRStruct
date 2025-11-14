@@ -130,8 +130,10 @@ python run.py --llm Qwen72B --task D-U1
 ```
 
 ### Citation
+
 If you find EHRStruct helpful in your research, please cite our paper:
 
+```bibtex
 @article{yang2025ehrstruct,
   title={EHRStruct: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks},
   author={Yang, Xiao and Zhao, Xuejiao and Shen, Zhiqi},
