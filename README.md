@@ -11,7 +11,7 @@ It defines 11 clinically grounded tasks across 6 categories, provides 2,200 stan
 
 ## 📄 Paper Versions
 
-- AAAI 2026: [Paper (coming soon)]()  
+- AAAI 2026
 - [arXiv](https://arxiv.org/abs/2511.08206)
 
 
