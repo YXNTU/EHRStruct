@@ -6,8 +6,8 @@
 
 💻 This repository includes all data of the **EHRStruct** benchmark and the official implementation of the proposed model **EHRMaster**.
 
-EHRStruct is a comprehensive benchmark for evaluating large language models on structured electronic health record (EHR) tasks.
-It defines 11 clinically grounded tasks across 6 categories, provides 2,200 standardized evaluation samples derived from Synthea and eICU datasets, and enables systematic comparison across both general-purpose and medical-domain LLMs.
+**EHRStruct** is a comprehensive benchmark for evaluating large language models on structured electronic health record (EHR) tasks.
+It defines **11 clinically grounded tasks** across 6 categories, provides **2,200 standardized evaluation samples** derived from Synthea and eICU datasets, and enables systematic comparison across both general-purpose and medical-domain LLMs.
 
 #### 📄 Paper Versions
 - AAAI 2026 (OTW)
