@@ -52,7 +52,10 @@ We use two datasets in this benchmark: **Synthea** and **eICU**.
   Users can either generate their own data or directly download the preprocessed data from 👉 [Google Drive](https://drive.google.com/drive/folders/1-XXajeBbjDJxsX1KZ6MnxRP_qwHoAylS?usp=drive_link).
   After downloading, unzip the files into the `EHRStruct/` directory to run experiments directly.
 
-- **eICU** dataset can be found[here](https://github.com/synthetichealth/synthea).xxxxxxx
+- **eICU** dataset originates from the [eICU Collaborative Research Database](https://physionet.org/content/eicu-crd/2.0/).
+  Users must obtain credentialed access via PhysioNet to download the raw data.
+  In our benchmark, the data is **manually processed**. Due to privacy restrictions, we cannot publicly share the derived eICU data. Instead, we provide a substitute version.
+  Please refer to the `eICU/` directory for the preprocessing code and reference.
 
 🔴 **Note:** The released data have been reorganized and standardized, so numerical differences may appear but do not affect the overall conclusions.
 
