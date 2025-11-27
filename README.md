@@ -49,8 +49,8 @@ The figure illustrates the four key components of the benchmark:
 
 We use two datasets in this benchmark: **Synthea** and **eICU**.  
 - **Synthea** dataset originates from the open-source synthetic patient generator [Synthea](https://github.com/synthetichealth/synthea). It contains fully simulated patient records and does not include any identifiable or real-world information.
-  The preprocessed data 👉  [Google Drive](https://drive.google.com/drive/folders/1-XXajeBbjDJxsX1KZ6MnxRP_qwHoAylS?usp=drive_link)
-  After downloading, unzip the files into the `EHRStruct/` directory to run experiments directly. 
+  Users can either generate their own data or directly download the preprocessed data from 👉 [Google Drive](https://drive.google.com/drive/folders/1-XXajeBbjDJxsX1KZ6MnxRP_qwHoAylS?usp=drive_link).
+  After downloading, unzip the files into the `EHRStruct/` directory to run experiments directly.
 
 - **eICU** dataset can be found[here](https://github.com/synthetichealth/synthea).xxxxxxx
 
