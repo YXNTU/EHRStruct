@@ -53,9 +53,7 @@ We use two datasets in this benchmark: **Synthea** and **eICU**.
   After downloading, unzip the files into the `EHRStruct/` directory to run experiments directly.
 
 - **eICU** dataset originates from the [eICU Collaborative Research Database](https://physionet.org/content/eicu-crd/2.0/).
-  Users must obtain credentialed access via PhysioNet to download the raw data.
-  In our benchmark, the data is **manually processed**. Due to privacy restrictions, we cannot publicly share the derived eICU data. Instead, we provide a substitute version.
-  Please refer to the `eICU/` directory for the preprocessing code and reference.
+  Users must obtain **credentialed access** via PhysioNet to download the raw data. We provide the preprocessing code of this dataset in the [`eICU/`](https://github.com/YXNTU/EHRStruct/tree/main/eICU) directory of this project.
 
 🔴 **Note:** The released data have been reorganized and standardized, so numerical differences may appear but do not affect the overall conclusions.
 
