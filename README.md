@@ -1,44 +1,58 @@
 
 # EHRStruct: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks
+<a href='https://arxiv.org/abs/2502.04413'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='https://yxntu.github.io/proEHRStruct/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
 
-EHRStruct is a comprehensive benchmark for evaluating large language models  on structured electronic health record (EHR) tasks.
+✅ This paper has been accepted by [The 40th AAAI Conference on Artificial Intelligence (AAAI) 2026](https://aaai.org/conference/aaai/aaai-26/).
+
+💻 This repository includes all data of the **EHRStruct** benchmark and the official implementation of the proposed model **EHRMaster**.
+
+EHRStruct is a comprehensive benchmark for evaluating large language models on structured electronic health record (EHR) tasks.
 It defines 11 clinically grounded tasks across 6 categories, provides 2,200 standardized evaluation samples derived from Synthea and eICU datasets, and enables systematic comparison across both general-purpose and medical-domain LLMs.
 
-## 🌈 Update
-
-- [2025.11.08] Accepted as an **Oral presentation** at AAAI 2026. 🎉
-
-
-## 📄 Paper Versions
-
-- AAAI 2026
+#### 📄 Paper Versions
+- AAAI 2026 (OTW)
 - [arXiv](https://arxiv.org/abs/2511.08206)
 
+#### Authors
+[Xiao Yang](https://yxntu.github.io/),  [Xuejiao Zhao*](https://zxjwudi.github.io/xuejiaozhao/), [Zhiqi Shen](https://scholar.google.com.sg/citations?user=EA2T_lwAAAAJ&hl=en)
+
+**Nanyang Technological University  &nbsp; | &nbsp; LILY Research Centre (NTU) &nbsp; |&nbsp; ANGEL Research Institute (NTU)**
+
+\* Corresponding author
+
+[![Stargazers repo roster for @YXNTU/EHRStruct](https://reporoster.com/stars/YXNTU/EHRStruct)](https://github.com/YXNTU/EHRStruct/stargazers)
+
+---
+
+## 🌈 News
+* **[2025.11.16]** We release the [ProjectPage](https://yxntu.github.io/proEHRStruct/) of **EHRStruct**.
+* **[2025.11.16]** We release the preprint of **EHRStruct** on [arXiv](https://arxiv.org/abs/2511.08206).
+* **[2025.11.13]** We release github repository of **EHRStruct** and **EHRMaster**. 💪 Come to take the challenge！
+* **[2025.11.08]** Accepted as an **Oral presentation** to AAAI 2026. 🎉
 
 ## 🧭 Framework Overview
 
 <p align="center">
   <img src="source/Overview of EHRStruct.jpg" width="800">
 </p>
+    <p align="center"><em>Figure 1: Overview of EHRStruct.</em></p >
 
-**Overview of EHRStruct.**  
 The figure illustrates the four key components of the benchmark:  
-(1) task synthesis through clinical needs induction and task distillation from prior research;  
-(2) taxonomy construction based on clinical scenarios and reasoning levels;  
-(3) task-specific sample extraction from real and synthetic EHR data;   
-(4) the model evaluation pipeline, including table input, format conversion, model inference, and answer evaluation.  
+ **(1)** task synthesis through clinical needs induction and task distillation from prior research;  
+ **(2)** taxonomy construction based on clinical scenarios and reasoning levels;  
+ **(3)** task-specific sample extraction from real and synthetic EHR data;   
+ **(4)** the model evaluation pipeline, including table input, format conversion, model inference, and answer evaluation.  
 
 ## 🧪 Experiments
 
 ### Dataset
 
-We use two datasets in this benchmark: Synthea and eICU.  
-The Synthea dataset originates from the open-source synthetic patient generator [Synthea](https://github.com/synthetichealth/synthea). It contains fully simulated patient records and does not include any identifiable or real-world information.  
+We use two datasets in this benchmark: **Synthea** and **eICU**.  
+- **Synthea** dataset originates from the open-source synthetic patient generator [Synthea](https://github.com/synthetichealth/synthea). It contains fully simulated patient records and does not include any identifiable or real-world information.
+  The preprocessed data 👉  [Google Drive](https://drive.google.com/drive/folders/1-XXajeBbjDJxsX1KZ6MnxRP_qwHoAylS?usp=drive_link)
+  After downloading, unzip the files into the `EHRStruct/` directory to run experiments directly. 
 
-The preprocessed data 👉  [Google Drive](https://drive.google.com/drive/folders/1-XXajeBbjDJxsX1KZ6MnxRP_qwHoAylS?usp=drive_link)
-
-
-After downloading, unzip the files into the `EHRStruct/` directory to run experiments directly. 
+- **eICU** dataset can be found[here](https://github.com/synthetichealth/synthea).xxxxxxx
 
 🔴 **Note:** The released data have been reorganized and standardized, so numerical differences may appear but do not affect the overall conclusions.
 
@@ -129,7 +143,7 @@ python run.py --llm Qwen72B --task D-U1
 # Results will be saved in EHRMaster/output/
 ```
 
-### Citation
+## Citation
 
 If you find EHRStruct helpful in your research, please cite our paper:
 
@@ -142,7 +156,7 @@ If you find EHRStruct helpful in your research, please cite our paper:
 }
 ```
 
-### License
+## License
 EHRStruct is released under the MIT License. Our codes must only be used for the purpose of research.
 
 
