@@ -1,6 +1,6 @@
 
 # EHRStruct: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks
-<a href='https://arxiv.org/abs/2502.04413'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='https://yxntu.github.io/proEHRStruct/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
+<a href='https://arxiv.org/abs/2511.08206'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='https://yxntu.github.io/proEHRStruct/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
 
 ✅ This paper has been accepted by [The 40th AAAI Conference on Artificial Intelligence (AAAI) 2026](https://aaai.org/conference/aaai/aaai-26/).
 
