@@ -3,12 +3,12 @@
   <img src="source/logo_horizontal.png" width="700">
 </p>
 
-# EHRStruct: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks
+
 <a href='https://arxiv.org/abs/2511.08206'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='https://yxntu.github.io/proEHRStruct/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
 
-✅ This paper has been accepted by [The 40th AAAI Conference on Artificial Intelligence (AAAI) 2026](https://aaai.org/conference/aaai/aaai-26/).
-
 💻 This repository includes all data of the **EHRStruct** benchmark and the official implementation of the proposed model **EHRMaster**.
+
+✅ The paper [**EHRStruct: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks**](https://arxiv.org/abs/2511.08206) has been accepted by [The 40th AAAI Conference on Artificial Intelligence (AAAI) 2026](https://aaai.org/conference/aaai/aaai-26/).
 
 **EHRStruct** is a comprehensive benchmark for evaluating large language models on structured electronic health record (EHR) tasks.
 It defines **11 clinically grounded tasks** across 6 categories, provides **2,200 standardized evaluation samples** derived from Synthea and eICU datasets, and enables systematic comparison across both general-purpose and medical-domain LLMs.
