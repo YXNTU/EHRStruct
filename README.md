@@ -1,4 +1,8 @@
 
+<p align="center">
+  <img src="source/logo_horizontal.png" width="700">
+</p>
+
 # EHRStruct: A Comprehensive Benchmark Framework for Evaluating Large Language Models on Structured Electronic Health Record Tasks
 <a href='https://arxiv.org/abs/2511.08206'><img src='https://img.shields.io/badge/Paper-Arxiv-red'></a> <a href='https://yxntu.github.io/proEHRStruct/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
 
