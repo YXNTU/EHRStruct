@@ -161,8 +161,10 @@ If you find EHRStruct helpful in your research, please cite our paper:
 }
 ```
 
-## License
-EHRStruct is released under the MIT License. Our codes must only be used for the purpose of research.
+## 🔑 License
+EHRStruct is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/).
+Commercial use is prohibited without a separate license agreement with the authors.
+
 
 
 
