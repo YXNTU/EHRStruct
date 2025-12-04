@@ -29,9 +29,10 @@ It defines **11 clinically grounded tasks** across 6 categories, provides **2,20
 ---
 
 ## 🌈 News
+* **[2025.12.04]** We host the [**EHRStruct 2026 - LLM Structured EHR Challenge**](https://www.codabench.org/competitions/12019/) on Codabench. 💪 Come to take the challenge！
 * **[2025.11.16]** We release the [ProjectPage](https://yxntu.github.io/proEHRStruct/) of **EHRStruct**.
 * **[2025.11.16]** We release the preprint of **EHRStruct** on [arXiv](https://arxiv.org/abs/2511.08206).
-* **[2025.11.13]** We release github repository of **EHRStruct** and **EHRMaster**. 💪 Come to take the challenge！
+* **[2025.11.13]** We release github repository of **EHRStruct** and **EHRMaster**. Have a try!
 * **[2025.11.08]** Accepted as an **Oral presentation** to AAAI 2026. 🎉
 
 ## 🧭 Framework Overview
