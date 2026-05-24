@@ -14,7 +14,7 @@
 It defines **11 clinically grounded tasks** across 6 categories, provides **2,200 standardized evaluation samples** derived from Synthea and eICU datasets, and enables systematic comparison across both general-purpose and medical-domain LLMs.
 
 #### 📄 Paper Versions
-- AAAI 2026 (OTW)
+- [AAAI 2026](https://ojs.aaai.org/index.php/AAAI/article/view/40731)
 - [arXiv](https://arxiv.org/abs/2511.08206)
 
 #### Authors
